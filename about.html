@@ -1,76 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>GUNAWAN</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi RT-16</title>
+    <!-- Bootstrap CSS untuk tampilan seperti jumbotron -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<!-- loader -->
-	<div class="bg-loader">
-		<div class="loader"></div>
-	</div>
+    <!-- header -->
+    <!-- Logo di kiri atas -->
+    <div class="logo-container">
+        <img src="img/Logo_erte.jpg" alt="Logo RT" class="logo">
+    </div>
+    
+    <div class="jumbotron text-center">
+        <h1 class="display-4">SISTEM INFORMASI</h1>
+        <h2>RT-16 ( RW 16 )</h2>
+        <h3>PERUM BCL ~ DESA WALUYA</h3>
+        <h4>KECAMATAN CIKARANG UTARA ~ KABUPATEN BEKASI</h4>
+        <hr class="my-4">
+    </div>
 
-	<!-- header -->
-	<div class="medsos">
-		<div class="container">
-			<ul>
-				<li><a href="https://www.facebook.com/guna.wan.7792"><i class="fab fa-facebook"></i></a></li>
-				<li><a href="https://youtube.com/channel/UCA-CxBDOcdp6ekYnr_ekalA"><i class="fab fa-youtube"></i></a></li>
-				<li><a href="https://www.instagram.com/guneiza/"><i class="fab fa-instagram"></i></a></li>
-				<li><a href="#"><i class="fab fa-github"></i></a></li>
-				<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-			</ul>
-		</div>
-	</div>
-	<header>
-		<div class="container">
-			<h1><a href="index.html">GUNAWAN</a></h1>
-			<ul>
-				<li><a href="index.html">HOME</a></li>
-				<li class="active"><a href="about.html">ABOUT</a></li>
-				<li><a href="service.html">SERVICE</a></li>
-				<li><a href="contact.html">CONTACT</a></li>
-			</ul>
-		</div>
-	</header>
+    <!-- Navbar dengan tombol -->
+    <div class="navbar text-center">
+        <a class="active" href="index.html"><span>Home</span></a>
+        <a class="btn gradient-button m-2" href="about.html"><span>About My</span></a>
+		<a class="btn gradient-button m-2" href="struktur.html"><span>Stuktur Organisasi</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Laporan</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Data Warga & Area</span></a>
+		<a class="btn gradient-button m-2" href="service.html"><span>SERVICE</span></a>
+        <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
+        
+        <!-- Dropdown Menu -->
+        <!-- <div class="dropdown d-inline-block m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Options
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Option 1</a>
+                <a class="dropdown-item" href="#">Option 2</a>
+                <a class="dropdown-item" href="#">Option 3</a>
+            </div>
+        </div>
+    </div> -->
+	<!-- Dropdown Menu -->
+     <div class="dropdown d-inline-block m-2">
+    <button class="neon-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More Options
+		    <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Humas)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (RT)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Admin)</span></a>
+    </div>
+  </div>
+  </div>
 
-	<!-- label -->
-	<section class="label">
-		<div class="container">
-			<p>Home / About</p>
-		</div>
-	</section>
+		<div class="jumbotron text-center">
 
 	<!-- about -->
-	<section class="about">
-		<div class="container">
+	<!-- <section class="about">
+		 <div class="container">
 			<img src="img/Fotoku.jpg" width="100%">
+			</div>
+			<hr> -->
+			
+			
+	<!-- Slideshow -->
+	<hr>
+	<!--  <div class="container"> -->
+	   <div class="slideshow-container">
+	   <div class="container">
+        <div class="slide fade">
+            <img src="img/banner.jpg" alt="Slide 1" class="slide-image">
+        </div>
+        <div class="slide fade">
+            <img src="img/Tentang1.jpg" alt="Slide 2" class="slide-image">
+        </div>
+        <div class="slide fade">
+            <img src="img/Tentang2.jpg" alt="Slide 3" class="slide-image">
+        </div>
+		<div class="slide fade">
+            <img src="img/Tentang5.jpeg" alt="Slide 4" class="slide-image">
+        </div>
+      </div>
+	</div>
+			 <hr>
+			 <!-- About Section -->
+            <!-- <div id="about-section"> -->
+			<div class="container">
 			<h3>ABOUT</h3>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</strong>, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</strong>, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+			<p>Warga RT 16 dikenal sebagai komunitas yang penuh semangat dan kebersamaan.  
+			<strong>Dengan latar belakang yang beragam, mereka tetap menjaga keharmonisan dan saling mendukung dalam setiap kegiatan.
+			</strong>, Kebersamaan ini tercermin dalam berbagai acara, seperti perayaan hari besar nasional, kerja bakti, serta kegiatan sosial lainnya yang selalu melibatkan semua kalangan, dari anak-anak hingga orang tua.</p>
+			<p>Selain menjunjung tinggi nilai gotong royong, warga RT 16 juga berkomitmen untuk menciptakan lingkungan yang bersih, nyaman, dan aman. 
+			<strong>Mereka rutin mengadakan kegiatan kebersihan lingkungan dan selalu bekerja sama dalam menangani berbagai tantangan, baik itu dalam bentuk musyawarah maupun aksi nyata.
+			</strong>, Hal ini menjadikan RT 16 sebagai contoh komunitas yang solid dan peduli terhadap lingkungan sekitar.
+			</strong> Tidak hanya itu, semangat kebersamaan warga RT 16 juga ditunjukkan melalui partisipasi aktif dalam meningkatkan kualitas hidup bersama. Mereka mendukung program-program edukasi, seni, dan olahraga yang ditujukan untuk seluruh warga. Dengan semangat kekeluargaan yang kuat, warga RT 16 terus berupaya membangun komunitas yang berdaya dan bermanfaat bagi semua anggotanya.
+			</p>
 			<h3>VISI</h3>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</strong>.</p>
+			<p>- Melanjutkan Program-program yang sudah ada. <strong>
+			</p>
+			- Bekerja dengan penuh tanggung jawab, jujur dan belajar lebih profesional.</strong>.</p>
 			<h3>MISI</h3>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</strong>.</p>
+			<p>Menciptakan lingkungan yang BERIMAN 
+			</p>
+			<strong> BER sih, I ndah, M anfaat, A man, N yaman</strong>.</p>
 		</div>
 	</section>
+	<hr>
 
 	<!-- footer -->
-	<footer>
-		<div class="container">
-			<small>Copyright &copy; 2021 - Gunawan. All Rights Reserved.</small>
-		</div>
-	</footer>
+    <footer class="footer">
+		<div class="footer-content">
+            <small>Copyright &copy; 2024 - Gunawan. All Rights Reserved.</small>
+        </div>
+    </footer>
 
-
-	<script type="text/javascript">
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+		<!-- <script type="text/javascript">
 		$(document).ready(function(){
 			$(".bg-loader").hide();
 		})
-	</script>
+	</script> -->
+<script>
+    $(document).ready(function () {
+        let slideIndex = 0;
+        const slideDuration = 3000; // Waktu slide ditampilkan (3 detik)
+        const transitionDuration = 500; // Waktu transisi antar slide (0.5 detik)
+
+        showSlides();
+
+        function showSlides() {
+            const slides = document.querySelectorAll(".slide");
+
+            // Menyembunyikan semua slide
+            slides.forEach(slide => {
+                slide.style.opacity = "0"; // Menggunakan animasi fade-out
+                slide.style.transition = `opacity ${transitionDuration}ms ease-in-out`;
+                slide.style.display = "none"; // Disembunyikan setelah fade selesai
+            });
+
+            // Menampilkan slide berikutnya
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+
+            slides[slideIndex - 1].style.display = "block"; // Tampilkan slide
+            setTimeout(() => {
+                slides[slideIndex - 1].style.opacity = "1"; // Fade-in
+            }, 10); // Beri sedikit jeda sebelum animasi fade-in
+
+            setTimeout(showSlides, slideDuration); // Ulangi setelah durasi tampil
+        }
+    });
+</script>
+
+	
 </body>
 </html>

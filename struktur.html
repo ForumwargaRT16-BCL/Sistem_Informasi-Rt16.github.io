@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi RT-16</title>
+    <!-- Bootstrap CSS untuk tampilan seperti jumbotron -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- header -->
+    <!-- Logo di kiri atas -->
+    <div class="logo-container">
+        <img src="img/Logo_erte.jpg" alt="Logo RT" class="logo">
+    </div>
+    
+    <div class="jumbotron text-center">
+        <h1 class="display-4">SISTEM INFORMASI</h1>
+        <h2>RT-16 ( RW 16 )</h2>
+        <h3>PERUM BCL ~ DESA WALUYA</h3>
+        <h4>KECAMATAN CIKARANG UTARA ~ KABUPATEN BEKASI</h4>
+        <hr class="my-4">
+    </div>
+
+    <!-- Navbar dengan tombol -->
+    <div class="navbar text-center">
+        <a class="active" href="index.html"><span>Home</span></a>
+        <a class="btn gradient-button m-2" href="about.html"><span>About My</span></a>
+		<a class="btn gradient-button m-2" href="struktur.html"><span>Stuktur Organisasi</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Laporan</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Data Warga & Area</span></a>
+		<a class="btn gradient-button m-2" href="service.html"><span>SERVICE</span></a>
+        <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
+        
+        <!-- Dropdown Menu -->
+        <!-- <div class="dropdown d-inline-block m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Options
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Option 1</a>
+                <a class="dropdown-item" href="#">Option 2</a>
+                <a class="dropdown-item" href="#">Option 3</a>
+            </div>
+        </div>
+    </div> -->
+	<!-- Dropdown Menu -->
+     <div class="dropdown d-inline-block m-2">
+    <button class="neon-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More Options
+		    <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Humas)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (RT)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Admin)</span></a>
+    </div>
+  </div>
+  </div>
+
+		<div class="jumbotron text-center">
+
+		<!-- label -->
+
+	<div class="container">
+			<h2>STRUKTUR ORGANISASI</h2> </section>
+		<hr>
+			<section class="struktur">
+		</div>
+	</section>
+	<hr>
+
+
+	<!-- footer -->
+    <footer class="footer">
+		<div class="footer-content">
+            <small>Copyright &copy; 2024 - Gunawan. All Rights Reserved.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+		<!-- <script type="text/javascript">
+		$(document).ready(function(){
+			$(".bg-loader").hide();
+		})
+	</script> -->
+<script>
+    $(document).ready(function () {
+        let slideIndex = 0;
+        const slideDuration = 3000; // Waktu slide ditampilkan (3 detik)
+        const transitionDuration = 500; // Waktu transisi antar slide (0.5 detik)
+
+        showSlides();
+
+        function showSlides() {
+            const slides = document.querySelectorAll(".slide");
+
+            // Menyembunyikan semua slide
+            slides.forEach(slide => {
+                slide.style.opacity = "0"; // Menggunakan animasi fade-out
+                slide.style.transition = `opacity ${transitionDuration}ms ease-in-out`;
+                slide.style.display = "none"; // Disembunyikan setelah fade selesai
+            });
+
+            // Menampilkan slide berikutnya
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+
+            slides[slideIndex - 1].style.display = "block"; // Tampilkan slide
+            setTimeout(() => {
+                slides[slideIndex - 1].style.opacity = "1"; // Fade-in
+            }, 10); // Beri sedikit jeda sebelum animasi fade-in
+
+            setTimeout(showSlides, slideDuration); // Ulangi setelah durasi tampil
+        }
+    });
+</script>
+
+	
+</body>
+</html>
