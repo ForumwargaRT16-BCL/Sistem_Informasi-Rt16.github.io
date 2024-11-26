@@ -688,5 +688,12 @@ hr.my-4 {
     margin-bottom: 5px; /* Memberikan jarak antar poin di list */
 }
 
+.table-container {
+    max-width: 100%;
+    overflow-x: auto; /* Scroll horizontal */
+    overflow-y: auto; /* Scroll vertikal */
+    margin-top: 20px; /* Menambahkan margin di atas tabel */
+    height: 400px; /* Menentukan tinggi kontainer untuk scroll vertikal */
+}
 
 *
