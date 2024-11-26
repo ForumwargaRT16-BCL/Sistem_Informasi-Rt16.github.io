@@ -129,7 +129,13 @@
                                 <td>${index + 1}</td>
                                 <td>${row.Program || "-"}</td>
                                 <td>${row.Waktu || "-"}</td>
-                                <td>${row.Laporan || "-"}</td>
+                                <td>
+                                   ${
+                                     row.Laporan
+                                     ? `<a href="${row.Laporan}" target="_blank" style="color: blue;">${row.Laporan}</a>`
+                                     : "-"
+                                     }
+                                </td>
                                 <td>${row.Keterangan || "-"}</td>
                             `;
                             tableBody.appendChild(tr);
