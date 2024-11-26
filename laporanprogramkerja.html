@@ -61,24 +61,39 @@
             <span></span>
             <span></span>
     </button>
-       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="btn gradient-button m-2" href="#"><span>Hubungi (Humas)</span></a>
         <a class="btn gradient-button m-2" href="#"><span>Hubungi (RT)</span></a>
         <a class="btn gradient-button m-2" href="#"><span>Hubungi (Admin)</span></a>
-       </div>
-      </div>
-     </div>
+    </div>
+  </div>
+  </div>
 
 		<div class="jumbotron text-center">
 
 		<!-- label -->
 
 	<div class="container">
-			<h2>STRUKTUR ORGANISASI</h2> </section>
-		<hr>
-			<section class="struktur">
-		</div>
-	</section>
+			<h2>LAPORAN PROGRAM KERJA</h2> </section>
+	<hr>
+	<div class="container">
+    <table id="laporan-table" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Program</th>
+                <th>Waktu</th>
+                <th>Laporan</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data akan dimuat di sini -->
+        </tbody>
+    </table>
+</div>
+
+			
 	<hr>
 
 
@@ -93,44 +108,41 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	
-		<!-- <script type="text/javascript">
-		$(document).ready(function(){
-			$(".bg-loader").hide();
-		})
-	</script> -->
-<script>
-    $(document).ready(function () {
-        let slideIndex = 0;
-        const slideDuration = 3000; // Waktu slide ditampilkan (3 detik)
-        const transitionDuration = 500; // Waktu transisi antar slide (0.5 detik)
-
-        showSlides();
-
-        function showSlides() {
-            const slides = document.querySelectorAll(".slide");
-
-            // Menyembunyikan semua slide
-            slides.forEach(slide => {
-                slide.style.opacity = "0"; // Menggunakan animasi fade-out
-                slide.style.transition = `opacity ${transitionDuration}ms ease-in-out`;
-                slide.style.display = "none"; // Disembunyikan setelah fade selesai
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const csvFilePath = "data/laporankerja.csv"; // Path ke file CSV
+            
+            // Parsing CSV menggunakan PapaParse
+            Papa.parse(csvFilePath, {
+                download: true, // Unduh file dari server
+                header: true, // Baca file CSV sebagai key-value berdasarkan header
+                skipEmptyLines: true, // Lewati baris kosong
+                complete: function (results) {
+                    const data = results.data; // Data CSV yang sudah diparse
+                    const tableBody = document.querySelector("#laporan-table tbody");
+                    
+                    if (data && data.length > 0) {
+                        data.forEach((row, index) => {
+                            const tr = document.createElement("tr");
+                            tr.innerHTML = `
+                                <td>${index + 1}</td>
+                                <td>${row.Program || "-"}</td>
+                                <td>${row.Waktu || "-"}</td>
+                                <td>${row.Laporan || "-"}</td>
+                                <td>${row.Keterangan || "-"}</td>
+                            `;
+                            tableBody.appendChild(tr);
+                        });
+                    } else {
+                        console.error("File CSV kosong atau tidak sesuai format.");
+                    }
+                },
+                error: function (error) {
+                    console.error("Error saat membaca file CSV:", error);
+                }
             });
-
-            // Menampilkan slide berikutnya
-            slideIndex++;
-            if (slideIndex > slides.length) slideIndex = 1;
-
-            slides[slideIndex - 1].style.display = "block"; // Tampilkan slide
-            setTimeout(() => {
-                slides[slideIndex - 1].style.opacity = "1"; // Fade-in
-            }, 10); // Beri sedikit jeda sebelum animasi fade-in
-
-            setTimeout(showSlides, slideDuration); // Ulangi setelah durasi tampil
-        }
-    });
-</script>
-
-	
+        });
+    </script>
 </body>
 </html>
