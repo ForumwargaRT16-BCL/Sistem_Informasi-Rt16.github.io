@@ -130,11 +130,7 @@
                                 <td>${row.Program || "-"}</td>
                                 <td>${row.Waktu || "-"}</td>
                                 <td>
-                                   ${
-                                     row.Laporan
-                                     ? `<a href="${row.Laporan}" target="_blank" style="color: blue; font-weight: bold; text-decoration: none; display: inline-block; padding: 5px 10px; background-color: #f0f8ff; border-radius: 5px;">Lihat Laporan</a>`
-                                     : "-"
-                                    }
+                                   <button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat Laporan</button>
                                 </td>
                                 <td>${row.Keterangan || "-"}</td>
                             `;
