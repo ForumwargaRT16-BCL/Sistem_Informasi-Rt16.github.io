@@ -71,7 +71,7 @@ a::before
   height: 100%;
   background: linear-gradient(45deg,  #fb0094,  #00f, #0f0, #ff0,  #F00,  #fb0094,  #00f,  #0f0,  #ff0,  #f00);
   background-size: 400%;
-  apacity: 0;
+  opacity: 0;
   transition: 0.5s;
   animation: animate 20s linear infinite;
 }
@@ -85,7 +85,7 @@ a::after
   height: 100%;
   background: linear-gradient(45deg,  #fb0094,  #00f, #0f0, #ff0,  #F00,  #fb0094,  #00f,  #0f0,  #ff0,  #f00);
   background-size: 400%;
-  /* apacity: 0; */
+  /* opacity: 0; */
   filter: blur(20px);
   transition: 0.5s;
   animation: animate 20s linear infinite;
@@ -93,7 +93,7 @@ a::after
 a:hover::before,
 a:hover::after
 {
-	apacity: 1;
+	opacity: 1;
 	filter: brightness(1.5); /* Membuat cahaya lebih terang */
 }
 @keyframes animate
@@ -441,7 +441,17 @@ hr.my-4 {
   line-height: 2; /* Tinggi baris lebih besar untuk spasi */
   text-transform: uppercase; /* Semua huruf kapital */
   color: #333; /* Warna teks lebih gelap agar kontras */
+  overflow: hidden; /* Memastikan tidak ada teks yang meluber */
+  white-space: nowrap; /* Memastikan teks tetap satu baris */
 }
+
+@media (max-width: 600px) {
+  .running-text {
+    font-size: 18px; /* Sesuaikan ukuran teks */
+  }
+}
+
+
 
 /* Container untuk slideshow */
 .slideshow-container {
@@ -652,5 +662,31 @@ hr.my-4 {
 		margin-bottom: 20px;
 	}
 }
+
+.program-kerja {
+    text-align: left; /* Mengatur semua teks di div ini rata kiri */
+    margin: 20px; /* Memberikan jarak ke dalam */
+    line-height: 1.6; /* Memberikan jarak antar baris agar lebih rapi */
+}
+
+.program-kerja h3 {
+    margin-top: 20px; /* Memberikan jarak atas pada judul seksi */
+    font-weight: bold;
+}
+
+.program-kerja p {
+    font-style: italic; /* Membuat informasi nama pengurus sedikit berbeda */
+    margin-bottom: 10px;
+}
+
+.program-kerja ul {
+    list-style-type: disc; /* Membuat list menggunakan bullet */
+    padding-left: 40px; /* Memberikan indentasi pada daftar */
+}
+
+.program-kerja ul li {
+    margin-bottom: 5px; /* Memberikan jarak antar poin di list */
+}
+
 
 *
