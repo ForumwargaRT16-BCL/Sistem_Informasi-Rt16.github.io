@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi RT-16</title>
+		
+	    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/Logo_erte.jpg">
+	
+    <!-- Bootstrap CSS untuk tampilan seperti jumbotron -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- header -->
+    <!-- Logo di kiri atas -->
+    <div class="logo-container">
+        <img src="img/Logo_erte.jpg" alt="Logo RT" class="logo">
+    </div>
+    
+    <div class="jumbotron text-center">
+        <h1 class="display-4">SISTEM INFORMASI</h1>
+        <h2>RT-16 ( RW 16 )</h2>
+        <h3>PERUM BCL ~ DESA WALUYA</h3>
+        <h4>KECAMATAN CIKARANG UTARA ~ KABUPATEN BEKASI</h4>
+        <hr class="my-4">
+    </div>
+
+    <!-- Navbar dengan tombol -->
+    <div class="navbar text-center">
+        <a class="active" href="index.html"><span>Home</span></a>
+        <a class="btn gradient-button m-2" href="about.html"><span>About My</span></a>
+		<a class="btn gradient-button m-2" href="struktur.html"><span>Stuktur Organisasi</span></a>
+        <a class="btn gradient-button m-2" href="programkerja.html"><span>Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="laporankas.html"><span>Laporan KAS RT</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Data Warga & Area</span></a>
+		<a class="btn gradient-button m-2" href="service.html"><span>SERVICE</span></a>
+        <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
+        
+        <!-- Dropdown Menu -->
+        <!-- <div class="dropdown d-inline-block m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Options
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Option 1</a>
+                <a class="dropdown-item" href="#">Option 2</a>
+                <a class="dropdown-item" href="#">Option 3</a>
+            </div>
+        </div>
+    </div> -->
+	<!-- Dropdown Menu -->
+     <div class="dropdown d-inline-block m-2">
+    <button class="neon-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More Options
+		    <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Humas)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (RT)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Admin)</span></a>
+    </div>
+  </div>
+  </div>
+
+		<div class="jumbotron text-center">
+
+		<!-- label -->
+
+	<div class="container">
+			<h2>LAPORAN KAS RT16</h2> </section>
+	<hr>
+	<div class="table-container">
+    <table id="laporan-table" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Laporan</th>
+                <th>Waktu</th>
+                <th>Lampiran</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data akan dimuat di sini -->
+        </tbody>
+    </table>
+</div>
+
+			
+	<hr>
+
+
+	<!-- footer -->
+    <footer class="footer">
+		<div class="footer-content">
+            <small>Copyright &copy; 2024 - Gunawan. All Rights Reserved.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const csvFilePath = "data/laporankerja.csv"; // Path ke file CSV
+            
+            // Parsing CSV menggunakan PapaParse
+            Papa.parse(csvFilePath, {
+                download: true, // Unduh file dari server
+                header: true, // Baca file CSV sebagai key-value berdasarkan header
+                skipEmptyLines: true, // Lewati baris kosong
+                complete: function (results) {
+                    const data = results.data; // Data CSV yang sudah diparse
+                    const tableBody = document.querySelector("#laporan-table tbody");
+                    
+                    if (data && data.length > 0) {
+                        data.forEach((row, index) => {
+                            const tr = document.createElement("tr");
+                            tr.innerHTML = `
+                                <td>${index + 1}</td>
+                                <td>${row.Laporan || "-"}</td>
+                                <td>${row.Waktu || "-"}</td>
+                                <td>
+                                   <button class="btn btn-primary" onclick="window.open('${row.Lampiran}', '_blank')">Lihat Lampiran</button>
+                                </td>
+                                <td>${row.Keterangan || "-"}</td>
+                            `;
+                            tableBody.appendChild(tr);
+                        });
+                    } else {
+                        console.error("File CSV kosong atau tidak sesuai format.");
+                    }
+                },
+                error: function (error) {
+                    console.error("Error saat membaca file CSV:", error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
