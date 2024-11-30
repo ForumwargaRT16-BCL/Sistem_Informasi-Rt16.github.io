@@ -732,4 +732,19 @@ hr.my-4 {
     height: 400px; /* Menentukan tinggi kontainer untuk scroll vertikal */
 }
 
+.search-container {
+    text-align: left; /* Memastikan elemen berada di kiri */
+}
+
+#laporan-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #fff;  /* Pastikan latar belakang header tetap terlihat */
+    z-index: 1;  /* Pastikan header tetap di atas konten lainnya */
+}
+
+#laporan-table th {
+    border: 1px solid #dee2e6;  /* Membuat border tabel lebih jelas */
+}
+
 *
