@@ -74,17 +74,26 @@
 		<!-- label -->
 
 	<div class="container">
-			<h2>LAPORAN PROGRAM KERJA</h2> </section>
+			<h2>DATA WARGA RT16</h2> </section>
 	<hr>
+	    <!-- Input pencarian -->
+    <div class="search-container text-center">
+        <input type="text" id="searchInput" placeholder="Cari data warga..." class="form-control" onkeyup="filterTable()">
+    </div>
+    <br>
+    <!-- Tabel Data Warga -->
 	<div class="table-container">
     <table id="laporan-table" class="table table-bordered">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Program</th>
-                <th>Waktu</th>
-                <th>Laporan</th>
-                <th>Keterangan</th>
+                <th>No.KK</th>
+                <th>Blok/No</th>
+                <th>Nama</th>
+                <th>Gang</th>
+				<th>Posisi</th>
+				<th>No.HP</th>
+				<th>Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -109,42 +118,65 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const csvFilePath = "data/laporankerja.csv"; // Path ke file CSV
-            
-            // Parsing CSV menggunakan PapaParse
-            Papa.parse(csvFilePath, {
-                download: true, // Unduh file dari server
-                header: true, // Baca file CSV sebagai key-value berdasarkan header
-                skipEmptyLines: true, // Lewati baris kosong
-                complete: function (results) {
-                    const data = results.data; // Data CSV yang sudah diparse
-                    const tableBody = document.querySelector("#laporan-table tbody");
-                    
-                    if (data && data.length > 0) {
-                        data.forEach((row, index) => {
-                            const tr = document.createElement("tr");
-                            tr.innerHTML = `
-                                <td>${index + 1}</td>
-                                <td>${row.Program || "-"}</td>
-                                <td>${row.Waktu || "-"}</td>
-                                <td>
-                                   <button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat Laporan</button>
-                                </td>
-                                <td>${row.Keterangan || "-"}</td>
-                            `;
-                            tableBody.appendChild(tr);
-                        });
-                    } else {
-                        console.error("File CSV kosong atau tidak sesuai format.");
-                    }
-                },
-                error: function (error) {
-                    console.error("Error saat membaca file CSV:", error);
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const csvFilePath = "data/datawarga.csv"; // Path ke file CSV
+        
+        // Parsing CSV menggunakan PapaParse
+        Papa.parse(csvFilePath, {
+            download: true, // Unduh file dari server
+            header: true, // Baca file CSV sebagai key-value berdasarkan header
+            skipEmptyLines: true, // Lewati baris kosong
+            complete: function (results) {
+                const data = results.data; // Data CSV yang sudah diparse
+                const tableBody = document.querySelector("#laporan-table tbody");
+                
+                if (data && data.length > 0) {
+                    data.forEach((row, index) => {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td>${row["No.KK"] || "-"}</td>
+                            <td>${row["Blok/No"] || "-"}</td>
+                            <td>${row["Nama"] || "-"}</td>
+                            <td>${row["Gang"] || "-"}</td>
+                            <td>${row["Posisi"] || "-"}</td>
+                            <td>${row["No.HP"] || "-"}</td>
+                            <td>${row["Keterangan"] || "-"}</td>
+                        `;
+                        tableBody.appendChild(tr);
+                    });
+                } else {
+                    console.error("File CSV kosong atau tidak sesuai format.");
                 }
-            });
+            },
+            error: function (error) {
+                console.error("Error saat membaca file CSV:", error);
+            }
         });
-    </script>
+    });
+
+    // Fungsi untuk filter data berdasarkan pencarian
+    function filterTable() {
+        const searchInput = document.getElementById("searchInput").value.toLowerCase();
+        const table = document.getElementById("laporan-table");
+        const rows = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < rows.length; i++) { // Mulai dari baris pertama setelah header
+            const cells = rows[i].getElementsByTagName("td");
+            let match = false;
+
+            for (let j = 0; j < cells.length; j++) {
+                if (cells[j].innerText.toLowerCase().includes(searchInput)) {
+                    match = true;
+                    break;
+                }
+            }
+
+            rows[i].style.display = match ? "" : "none";
+        }
+    }
+</script>
+
 </body>
 </html>

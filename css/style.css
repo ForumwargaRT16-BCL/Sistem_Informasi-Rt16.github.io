@@ -270,6 +270,42 @@ hr.my-4 {
 * 
 /* Header Sosial Media */
 
+h1 {
+    font-size: 1.3rem; /* Ubah sesuai kebutuhan */
+}
+
+h2 {
+    font-size: 1.2rem; /* Ubah sesuai kebutuhan */
+}
+
+h3 {
+    font-size: 1rem; /* Ubah sesuai kebutuhan */
+}
+
+h4 {
+    font-size: 0.8rem; /* Ubah sesuai kebutuhan */
+}
+
+/* Untuk perangkat dengan layar kecil (responsif) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    h4 {
+        font-size: 0.8rem;
+    }
+}
+
+
 header h1 {
 	float: left;
 	padding:15px 0;
