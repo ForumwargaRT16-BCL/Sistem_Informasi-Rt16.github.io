@@ -1,88 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>GUNAWAN</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi RT-16</title>
+		
+	    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/Logo_erte.jpg">
+	
+    <!-- Bootstrap CSS untuk tampilan seperti jumbotron -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<!-- loader -->
-	<div class="bg-loader">
-		<div class="loader"></div>
-	</div>
+    <!-- header -->
+    <!-- Logo di kiri atas -->
+    <div class="logo-container">
+        <img src="img/Logo_erte.jpg" alt="Logo RT" class="logo">
+    </div>
+    
+    <div class="jumbotron text-center">
+        <h1 class="display-4">SISTEM INFORMASI</h1>
+        <h2>RT-16 ( RW 16 )</h2>
+        <h3>PERUM BCL ~ DESA WALUYA</h3>
+        <h4>KECAMATAN CIKARANG UTARA ~ KABUPATEN BEKASI</h4>
+    <!-- <hr class="my-4"> -->
+    </div>
 
-	<!-- header -->
-	<div class="medsos">
-		<div class="container">
-			<ul>
-				<li><a href="https://www.facebook.com/guna.wan.7792"><i class="fab fa-facebook"></i></a></li>
-				<li><a href="https://youtube.com/channel/UCA-CxBDOcdp6ekYnr_ekalA"><i class="fab fa-youtube"></i></a></li>
-				<li><a href="https://www.instagram.com/guneiza/"><i class="fab fa-instagram"></i></a></li>
-				<li><a href="#"><i class="fab fa-github"></i></a></li>
-				<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-			</ul>
-		</div>
-	</div>
-	<header>
-		<div class="container">
-			<h1><a href="index.html">GUNAWAN</a></h1>
-			<ul>
-				<li><a href="index.html">HOME</a></li>
-				<li><a href="about.html">ABOUT</a></li>
-				<li><a href="service.html">SERVICE</a></li>
-				<li class="active"><a href="contact.html">CONTACT</a></li>
-			</ul>
-		</div>
-	</header>
+    <!-- Navbar dengan tombol -->
+    <div class="navbar text-center">
+        <a class="active" href="index.html"><span>Home</span></a>
+        <a class="btn gradient-button m-2" href="about.html"><span>About My</span></a>
+		<a class="btn gradient-button m-2" href="struktur.html"><span>Stuktur Organisasi</span></a>
+        <a class="btn gradient-button m-2" href="programkerja.html"><span>Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="laporankas.html"><span>Laporan KAS RT</span></a>
+        <a class="btn gradient-button m-2" href="datawarga.html"><span>Data Warga & Area</span></a>
+		<a class="btn gradient-button m-2" href="service.html"><span>SERVICE</span></a>
+        <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
+        
+        <!-- Dropdown Menu -->
+        <!-- <div class="dropdown d-inline-block m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Options
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Option 1</a>
+                <a class="dropdown-item" href="#">Option 2</a>
+                <a class="dropdown-item" href="#">Option 3</a>
+            </div>
+        </div>
+    </div> -->
+	<!-- Dropdown Menu -->
+     <div class="dropdown d-inline-block m-2">
+    <button class="neon-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More Options
+		    <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+    </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Humas)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (RT)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Admin)</span></a>
+        </div>
+       </div>
+     </div>
 
-	<!-- label -->
-	<section class="label">
-		<div class="container">
-			<p>Home / Contact</p>
-		</div>
-	</section>
+		<div class="jumbotron text-center">
+        <!-- about -->
+        <div class="container">
+            <h2>CONTACT INFO</h2> 
+        </div>
+        <hr>
 
-	<!-- service -->
-	<section class="service">
-		<div class="container">
-			<h3>CONTACT INFO</h3>
-			<div class="box">
-				<div class="col-4">
-					<h4>Address</h4>
-					<p>Perum BCL Jl. Teratai 8 Blok F8 No.12A Waluya,Cikarang Selatan,Kab. BEKASI</p>
-				</div>
-				<div class="col-4">
-					<h4>Email</h4>
-					<p>gunaone.160383@gmail.com</p>
-				</div>
-				<div class="col-4">
-					<h4>Telp.</h4>
-					<p>(021)-)</p>
-				</div>
-				<div class="col-4">
-					<h4>Hp</h4>
-					<p>08111928091</p>
-				</div>
-			</div>
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7141644958483!2d107.15701421399604!3d-6.301238563421785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699b24e64bc095%3A0xd6e02b34a074b289!2sPT.%20PYOJOON%20MOLD%20INDONESIA!5e0!3m2!1sid!2sid!4v1638108291796!5m2!1sid!2sid" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-		</div>
-	</section>
+        <!-- Service Section -->
+        <section class="service">
+            <div class="container">
+                <div class="row">
+                    <!-- Address Column -->
+                    <div class="col-md-4 mb-4">
+                        <h4>Address</h4>
+                        <p>Perum BCL Jl. Teratai 6 Blok F6 No.1 Waluya, Cikarang Selatan, Kab. BEKASI</p>
+                    </div>
+                    <!-- Email Column -->
+                    <div class="col-md-4 mb-4">
+                        <h4>Email</h4>
+                        <p>erte16bcl@gmail.com</p>
+                    </div>
+                    <!-- HP Column -->
+                    <div class="col-md-4 mb-4">
+                        <h4>Hp</h4>
+                        <p>+62 812-8917-4478</p>
+                    </div>
+                </div>
+                <!-- Google Maps Embed -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d776.9883876975614!2d107.19145143228391!3d-6.261200037165117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1732944046048!5m2!1sid!2sid" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+        </section>
+        <hr>
+
+    </div>
 
 	<!-- footer -->
-	<footer>
-		<div class="container">
-			<small>Copyright &copy; 2021 - Gunawan. All Rights Reserved.</small>
-		</div>
-	</footer>
+    <footer class="footer">
+		<div class="footer-content">
+            <small>Copyright &copy; 2024 - Gunawan. All Rights Reserved.</small>
+        </div>
+    </footer>
 
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$(".bg-loader").hide();
-		})
-	</script>
 </body>
 </html>

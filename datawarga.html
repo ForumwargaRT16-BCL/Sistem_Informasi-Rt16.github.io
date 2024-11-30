@@ -78,7 +78,7 @@
 	<hr>
 	<!-- Dashboard informasi warga -->
         <div id="gang-summary" class="mb-4">
-            <p><strong>Total Jumlah Warga: </strong><span id="total-warga">0</span></p>
+            <p><strong>Total Jumlah KK: </strong><span id="total-warga">0</span></p>
         </div>
 
         <!-- Summary Data Warga -->
@@ -88,8 +88,7 @@
                     <tr>
                         <th>No</th>
                         <th>Gang</th>
-                        <th>Jumlah Warga</th>
-                        <th>Total</th>
+                        <th>Jumlah KK</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,7 +154,7 @@
                     const gangSummary = {};
 
                     if (data && data.length > 0) {
-                        // Mengumpulkan data per gang
+                        // Mengumpulkan data per gang dan menghitung jumlah warga per gang
                         data.forEach((row, index) => {
                             const gang = row["Gang"] || "-";
                             const jumlahWarga = parseInt(row["Jumlah Warga"]) || 0;
@@ -193,7 +192,6 @@
                                 <td>${no++}</td>
                                 <td>${gang}</td>
                                 <td>${gangSummary[gang]}</td>
-                                <td>0</td> <!-- Kolom "Total" bisa disesuaikan -->
                             `;
                             gangSummaryTable.appendChild(tr);
                         }
