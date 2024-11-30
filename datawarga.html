@@ -78,7 +78,7 @@
 	<hr>
 	    <!-- Input pencarian -->
     <div class="search-container text-center">
-        <input type="text" id="searchInput" placeholder="Cari data warga..." class="form-control" onkeyup="filterTable()">
+        <input type="text" id="searchInput" placeholder="Cari data warga..." class="form-control form-control-sm w-50 mx-auto" onkeyup="filterTable()">
     </div>
     <br>
     <!-- Tabel Data Warga -->
@@ -118,65 +118,73 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const csvFilePath = "data/datawarga.csv"; // Path ke file CSV
-        
-        // Parsing CSV menggunakan PapaParse
-        Papa.parse(csvFilePath, {
-            download: true, // Unduh file dari server
-            header: true, // Baca file CSV sebagai key-value berdasarkan header
-            skipEmptyLines: true, // Lewati baris kosong
-            complete: function (results) {
-                const data = results.data; // Data CSV yang sudah diparse
-                const tableBody = document.querySelector("#laporan-table tbody");
-                
-                if (data && data.length > 0) {
-                    data.forEach((row, index) => {
-                        const tr = document.createElement("tr");
-                        tr.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${row["No.KK"] || "-"}</td>
-                            <td>${row["Blok/No"] || "-"}</td>
-                            <td>${row["Nama"] || "-"}</td>
-                            <td>${row["Gang"] || "-"}</td>
-                            <td>${row["Posisi"] || "-"}</td>
-                            <td>${row["No.HP"] || "-"}</td>
-                            <td>${row["Keterangan"] || "-"}</td>
-                        `;
-                        tableBody.appendChild(tr);
-                    });
-                } else {
-                    console.error("File CSV kosong atau tidak sesuai format.");
+ <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const csvFilePath = "data/datawarga.csv";
+            
+            Papa.parse(csvFilePath, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function (results) {
+                    const data = results.data;
+                    const tableBody = document.querySelector("#laporan-table tbody");
+
+                    if (data && data.length > 0) {
+                        data.forEach((row, index) => {
+                            const tr = document.createElement("tr");
+                            const noHp = row["No.HP"] || "-";
+
+                            tr.innerHTML = `
+                                <td>${index + 1}</td>
+                                <td>${row["No.KK"] || "-"}</td>
+                                <td>${row["Blok/No"] || "-"}</td>
+                                <td>${row["Nama"] || "-"}</td>
+                                <td>${row["Gang"] || "-"}</td>
+                                <td>${row["Posisi"] || "-"}</td>
+                                <td>${formatPhoneNumber(noHp)}</td>
+                                <td>${row["Keterangan"] || "-"}</td>
+                            `;
+                            tableBody.appendChild(tr);
+                        });
+                    } else {
+                        console.error("File CSV kosong atau tidak sesuai format.");
+                    }
+                },
+                error: function (error) {
+                    console.error("Error saat membaca file CSV:", error);
                 }
-            },
-            error: function (error) {
-                console.error("Error saat membaca file CSV:", error);
-            }
+            });
         });
-    });
 
-    // Fungsi untuk filter data berdasarkan pencarian
-    function filterTable() {
-        const searchInput = document.getElementById("searchInput").value.toLowerCase();
-        const table = document.getElementById("laporan-table");
-        const rows = table.getElementsByTagName("tr");
-
-        for (let i = 1; i < rows.length; i++) { // Mulai dari baris pertama setelah header
-            const cells = rows[i].getElementsByTagName("td");
-            let match = false;
-
-            for (let j = 0; j < cells.length; j++) {
-                if (cells[j].innerText.toLowerCase().includes(searchInput)) {
-                    match = true;
-                    break;
-                }
+        function formatPhoneNumber(phone) {
+            // Contoh validasi sederhana: tambahkan kode negara jika tidak ada
+            if (!phone.startsWith("+62") && phone !== "-") {
+                return "+62 " + phone.trim();
             }
-
-            rows[i].style.display = match ? "" : "none";
+            return phone;
         }
-    }
-</script>
+
+        function filterTable() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const table = document.getElementById("laporan-table");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                let match = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(searchInput)) {
+                        match = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
