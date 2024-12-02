@@ -74,46 +74,18 @@
 		<!-- label -->
 
 	<div class="container">
-			<h2>DATA WARGA RT16</h2> </section>
+			<h2>LAPORAN KAS RUKEM RT16</h2> </section>
 	<hr>
-	<!-- Dashboard informasi warga -->
-        <div id="gang-summary" class="mb-4">
-            <p><strong>Total Jumlah KK: </strong><span id="total-warga">0</span></p>
-        </div>
-
-        <!-- Summary Data Warga -->
-        <div class="table-responsive">
-            <table id="gang-summary-table" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Gang</th>
-                        <th>Jumlah KK</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data summary akan dimuat di sini -->
-                </tbody>
-            </table>
-        </div>
-	    <!-- Input pencarian -->
-    <div class="search-container mb-4">
-        <input type="text" id="searchInput" placeholder="Cari data warga..." class="form-control form-control-sm w-25" onkeyup="filterTable()">
-    </div>
-    <br>
-    <!-- Tabel Data Warga -->
-	<div class="table-responsive">
+	<div class="table-container">
     <table id="laporan-table" class="table table-bordered">
         <thead>
             <tr>
                 <th>No</th>
-                <th>No.KK</th>
-                <th>Blok/No</th>
-                <th>Nama</th>
-                <th>Gang</th>
-				<th>Posisi</th>
-				<th>No.HP</th>
-				<th>Keterangan</th>
+				<th>Tahun</th>
+			    <th>Tanggal/Bulan</th>
+                <th>Laporan</th>
+                <th>Lampiran</th>
+                <th>Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -138,66 +110,35 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
- <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const csvFilePath = "data/datawarga.csv"; // Ganti dengan path file CSV Anda
+            const csvFilePath = "data/laporankasrukem.csv"; // Path ke file CSV
             
+            // Parsing CSV menggunakan PapaParse
             Papa.parse(csvFilePath, {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
+                download: true, // Unduh file dari server
+                header: true, // Baca file CSV sebagai key-value berdasarkan header
+                skipEmptyLines: true, // Lewati baris kosong
                 complete: function (results) {
-                    const data = results.data;
-                    const gangSummaryTable = document.querySelector("#gang-summary-table tbody");
+                    const data = results.data; // Data CSV yang sudah diparse
                     const tableBody = document.querySelector("#laporan-table tbody");
-                    let totalWarga = 0;
-                    const gangSummary = {};
-
+                    
                     if (data && data.length > 0) {
-                        // Mengumpulkan data per gang dan menghitung jumlah warga per gang
                         data.forEach((row, index) => {
-                            const gang = row["Gang"] || "-";
-                            const jumlahWarga = parseInt(row["Jumlah Warga"]) || 0;
-
-                            // Menambahkan jumlah warga ke gang yang bersangkutan
-                            if (!gangSummary[gang]) {
-                                gangSummary[gang] = 0;
-                            }
-                            gangSummary[gang] += jumlahWarga;
-
-                            // Menambahkan baris data ke tabel warga
                             const tr = document.createElement("tr");
-                            const noHp = row["No.HP"] || "-";
                             tr.innerHTML = `
                                 <td>${index + 1}</td>
-                                <td>${row["No.KK"] || "-"}</td>
-                                <td>${row["Blok/No"] || "-"}</td>
-                                <td>${row["Nama"] || "-"}</td>
-                                <td>${gang}</td>
-                                <td>${row["Posisi"] || "-"}</td>
-                                <td>${formatPhoneNumber(noHp)}</td>
-                                <td>${row["Keterangan"] || "-"}</td>
+								<td>${row.Tahun || "-"}</td>
+								<td>${row.Tanggal/Bulan || "-"}</td>
+                                <td>${row.Laporan || "-"}</td>
+                                <td>${row.Waktu || "-"}</td>
+                                <td>
+                                   <button class="btn btn-primary" onclick="window.open('${row.Lampiran}', '_blank')">Lihat Lampiran</button>
+                                </td>
+                                <td>${row.Keterangan || "-"}</td>
                             `;
                             tableBody.appendChild(tr);
-
-                            // Menambahkan jumlah warga ke total keseluruhan
-                            totalWarga += jumlahWarga;
                         });
-
-                        // Menampilkan data summary gang
-                        let no = 1;
-                        for (let gang in gangSummary) {
-                            const tr = document.createElement("tr");
-                            tr.innerHTML = `
-                                <td>${no++}</td>
-                                <td>${gang}</td>
-                                <td>${gangSummary[gang]}</td>
-                            `;
-                            gangSummaryTable.appendChild(tr);
-                        }
-
-                        // Menampilkan total jumlah warga keseluruhan
-                        document.getElementById("total-warga").textContent = totalWarga;
                     } else {
                         console.error("File CSV kosong atau tidak sesuai format.");
                     }
@@ -207,34 +148,6 @@
                 }
             });
         });
-
-        function formatPhoneNumber(phone) {
-            if (!phone.startsWith("+62") && phone !== "-") {
-                return "+62 " + phone.trim();
-            }
-            return phone;
-        }
-
-        function filterTable() {
-            const searchInput = document.getElementById("searchInput").value.toLowerCase();
-            const table = document.getElementById("laporan-table");
-            const rows = table.getElementsByTagName("tr");
-
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName("td");
-                let match = false;
-
-                for (let j = 0; j < cells.length; j++) {
-                    if (cells[j].innerText.toLowerCase().includes(searchInput)) {
-                        match = true;
-                        break;
-                    }
-                }
-
-                rows[i].style.display = match ? "" : "none";
-            }
-        }
     </script>
-
 </body>
 </html>

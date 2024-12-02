@@ -36,8 +36,8 @@
         <a class="btn gradient-button m-2" href="programkerja.html"><span>Program Kerja</span></a>
         <a class="btn gradient-button m-2" href="laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
         <a class="btn gradient-button m-2" href="laporankas.html"><span>Laporan KAS RT</span></a>
+		<a class="btn gradient-button m-2" href="laporankasrukem.html"><span>Laporan KAS RUKEM</span></a>
         <a class="btn gradient-button m-2" href="datawarga.html"><span>Data Warga & Area</span></a>
-		<a class="btn gradient-button m-2" href="service.html"><span>SERVICE</span></a>
         <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
         
         <!-- Dropdown Menu -->
@@ -76,13 +76,24 @@
 	<div class="container">
 			<h2>LAPORAN PROGRAM KERJA</h2> </section>
 	<hr>
+	<!-- Input pencarian -->
+            <div class="col-md-6">
+                 <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterByYear()">
+                 <option value="">Pilih Tahun...</option>
+                 </select>
+             </div>
+            <div class="col-md-6">
+                <input type="text" id="searchInput" placeholder="Cari data..." class="form-control form-control-sm w-20" onkeyup="filterTable()">
+            </div>
+        </div>
 	<div class="table-container">
     <table id="laporan-table" class="table table-bordered">
         <thead>
             <tr>
                 <th>No</th>
+				<th>Tahun</th>
+			    <th>Tanggal/Bulan</th>
                 <th>Program</th>
-                <th>Waktu</th>
                 <th>Laporan</th>
                 <th>Keterangan</th>
             </tr>
@@ -111,40 +122,74 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const csvFilePath = "data/laporankerja.csv"; // Path ke file CSV
+    const csvFilePath = "data/laporankerja.csv"; // Path ke file CSV
+    const yearDropdown = document.getElementById("yearDropdown");
+    const tableBody = document.querySelector("#laporan-table tbody");
+
+    // Parsing CSV menggunakan PapaParse
+    Papa.parse(csvFilePath, {
+        download: true, // Unduh file dari server
+        header: true, // Baca file CSV sebagai key-value berdasarkan header
+        skipEmptyLines: true, // Lewati baris kosong
+        complete: function (results) {
+            const data = results.data; // Data CSV yang sudah diparse
             
-            // Parsing CSV menggunakan PapaParse
-            Papa.parse(csvFilePath, {
-                download: true, // Unduh file dari server
-                header: true, // Baca file CSV sebagai key-value berdasarkan header
-                skipEmptyLines: true, // Lewati baris kosong
-                complete: function (results) {
-                    const data = results.data; // Data CSV yang sudah diparse
-                    const tableBody = document.querySelector("#laporan-table tbody");
-                    
-                    if (data && data.length > 0) {
-                        data.forEach((row, index) => {
-                            const tr = document.createElement("tr");
-                            tr.innerHTML = `
-                                <td>${index + 1}</td>
-                                <td>${row.Program || "-"}</td>
-                                <td>${row.Waktu || "-"}</td>
-                                <td>
-                                   <button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat Laporan</button>
-                                </td>
-                                <td>${row.Keterangan || "-"}</td>
-                            `;
-                            tableBody.appendChild(tr);
-                        });
-                    } else {
-                        console.error("File CSV kosong atau tidak sesuai format.");
+            if (data && data.length > 0) {
+                // Set untuk mengumpulkan tahun unik
+                const uniqueYears = new Set();
+
+                // Isi tabel dan kumpulkan tahun
+                data.forEach((row, index) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${row.Tahun || "-"}</td>
+                        <td>${row["Tanggal/Bulan"] || "-"}</td>
+                        <td>${row.Program || "-"}</td>
+                        <td>
+                           <button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat Laporan</button>
+                        </td>
+                        <td>${row.Keterangan || "-"}</td>
+                    `;
+                    tableBody.appendChild(tr);
+
+                    // Tambahkan tahun ke Set
+                    if (row.Tahun) {
+                        uniqueYears.add(row.Tahun);
                     }
-                },
-                error: function (error) {
-                    console.error("Error saat membaca file CSV:", error);
-                }
-            });
-        });
-    </script>
+                });
+
+                // Isi dropdown tahun
+                uniqueYears.forEach(year => {
+                    const option = document.createElement("option");
+                    option.value = year;
+                    option.textContent = year;
+                    yearDropdown.appendChild(option);
+                });
+            } else {
+                console.error("File CSV kosong atau tidak sesuai format.");
+            }
+        },
+        error: function (error) {
+            console.error("Error saat membaca file CSV:", error);
+        }
+    });
+});
+
+// Fungsi filter tabel berdasarkan tahun
+function filterByYear() {
+    const selectedYear = document.getElementById("yearDropdown").value;
+    const rows = document.querySelectorAll("#laporan-table tbody tr");
+
+    rows.forEach(row => {
+        const year = row.children[1].textContent; // Kolom "Tahun"
+        if (!selectedYear || year === selectedYear) {
+            row.style.display = ""; // Tampilkan baris
+        } else {
+            row.style.display = "none"; // Sembunyikan baris
+        }
+    });
+}
+</script>
 </body>
 </html>
