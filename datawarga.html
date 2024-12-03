@@ -153,21 +153,15 @@ document.addEventListener("DOMContentLoaded", function () {
             const gangSummary = {};
 
             if (data && data.length > 0) {
-                // Mengumpulkan data per gang dan menghitung jumlah warga per gang
+                // Mengolah data CSV
                 data.forEach((row, index) => {
                     const gang = row["Gang"] || "";
                     const jumlahWarga = parseInt(row["Jumlah Warga"]) || 0;
 
-                    // Lewati gang yang kosong atau "-"
+                    // Abaikan gang yang kosong atau "-"
                     if (!gang || gang === "-") return;
 
-                    // Menambahkan jumlah warga ke gang yang bersangkutan
-                    if (!gangSummary[gang]) {
-                        gangSummary[gang] = 0;
-                    }
-                    gangSummary[gang] += jumlahWarga;
-
-                    // Menambahkan baris data ke tabel warga
+                    // Mengisi tabel laporan utama
                     const tr = document.createElement("tr");
                     const noHp = row["No.HP"] || "-";
                     tr.innerHTML = `
@@ -182,11 +176,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
                     tableBody.appendChild(tr);
 
-                    // Menambahkan jumlah warga ke total keseluruhan
+                    // Menyusun data untuk ringkasan gang
+                    if (!gangSummary[gang]) {
+                        gangSummary[gang] = 0;
+                    }
+                    gangSummary[gang] += jumlahWarga;
+
+                    // Menghitung total keseluruhan warga
                     totalWarga += jumlahWarga;
                 });
 
-                // Menampilkan data summary gang
+                // Menampilkan data ringkasan per gang di tabel "Summary Data Warga"
                 let no = 1;
                 for (let gang in gangSummary) {
                     const tr = document.createElement("tr");
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     gangSummaryTable.appendChild(tr);
                 }
 
-                // Menampilkan total jumlah warga keseluruhan
+                // Menampilkan total keseluruhan warga
                 document.getElementById("total-warga").textContent = totalWarga;
             } else {
                 console.error("File CSV kosong atau tidak sesuai format.");
@@ -236,6 +236,7 @@ function filterTable() {
         rows[i].style.display = match ? "" : "none";
     }
 }
+
 </script>
 </body>
 </html>
