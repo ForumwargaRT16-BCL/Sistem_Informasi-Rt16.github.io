@@ -76,6 +76,12 @@
 	<div class="container">
 			<h2>LAPORAN KAS RUKEM RT16</h2> </section>
 	<hr>
+		<!-- Input pencarian -->
+            <div class="col-md-6">
+                 <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterByYear()">
+                 <option value="">Pilih Tahun...</option>
+                 </select>
+            </div>
 	<div class="table-container">
     <table id="laporan-table" class="table table-bordered">
         <thead>
@@ -112,24 +118,29 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const csvFilePath = "data/laporankasrukem.csv"; // Path ke file CSV
+    const csvFilePath = "data/laporankasrukem.csv"; // Path ke file CSV
+    const yearDropdown = document.getElementById("yearDropdown");
+    const tableBody = document.querySelector("#laporan-table tbody");
+
+    // Parsing CSV menggunakan PapaParse
+    Papa.parse(csvFilePath, {
+        download: true, // Unduh file dari server
+        header: true, // Baca file CSV sebagai key-value berdasarkan header
+        skipEmptyLines: true, // Lewati baris kosong
+        complete: function (results) {
+            const data = results.data; // Data CSV yang sudah diparse
             
-            // Parsing CSV menggunakan PapaParse
-            Papa.parse(csvFilePath, {
-                download: true, // Unduh file dari server
-                header: true, // Baca file CSV sebagai key-value berdasarkan header
-                skipEmptyLines: true, // Lewati baris kosong
-                complete: function (results) {
-                    const data = results.data; // Data CSV yang sudah diparse
-                    const tableBody = document.querySelector("#laporan-table tbody");
-                    
-                    if (data && data.length > 0) {
-                        data.forEach((row, index) => {
-                            const tr = document.createElement("tr");
-                            tr.innerHTML = `
-                                <td>${index + 1}</td>
-								<td>${row.Tahun || "-"}</td>
-                                <td>${row["Tanggal/Bulan"] || "-"}</td>
+            if (data && data.length > 0) {
+                // Set untuk mengumpulkan tahun unik
+                const uniqueYears = new Set();
+
+                // Isi tabel dan kumpulkan tahun
+                data.forEach((row, index) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${row.Tahun || "-"}</td>
+                        <td>${row["Tanggal/Bulan"] || "-"}</td>
                                 <td>${row.Laporan || "-"}</td>
                                 <td>
                                    <button class="btn btn-primary" onclick="window.open('${row.Lampiran}', '_blank')">Lihat Lampiran</button>
@@ -137,16 +148,44 @@
                                 <td>${row.Keterangan || "-"}</td>
                             `;
                             tableBody.appendChild(tr);
-                        });
-                    } else {
-                        console.error("File CSV kosong atau tidak sesuai format.");
+
+                    // Tambahkan tahun ke Set
+                    if (row.Tahun) {
+                        uniqueYears.add(row.Tahun);
                     }
-                },
-                error: function (error) {
-                    console.error("Error saat membaca file CSV:", error);
-                }
-            });
-        });
+                });
+
+                // Isi dropdown tahun
+                uniqueYears.forEach(year => {
+                    const option = document.createElement("option");
+                    option.value = year;
+                    option.textContent = year;
+                    yearDropdown.appendChild(option);
+                });
+            } else {
+                console.error("File CSV kosong atau tidak sesuai format.");
+            }
+        },
+        error: function (error) {
+            console.error("Error saat membaca file CSV:", error);
+        }
+    });
+});
+
+// Fungsi filter tabel berdasarkan tahun
+function filterByYear() {
+    const selectedYear = document.getElementById("yearDropdown").value;
+    const rows = document.querySelectorAll("#laporan-table tbody tr");
+
+    rows.forEach(row => {
+        const year = row.children[1].textContent; // Kolom "Tahun"
+        if (!selectedYear || year === selectedYear) {
+            row.style.display = ""; // Tampilkan baris
+        } else {
+            row.style.display = "none"; // Sembunyikan baris
+        }
+    });
+}
     </script>
 </body>
 </html>
