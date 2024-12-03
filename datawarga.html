@@ -138,99 +138,104 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const csvFilePath = "data/datawarga.csv"; // Ganti dengan path file CSV Anda
-        
-        Papa.parse(csvFilePath, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: function (results) {
-                const data = results.data;
-                const gangSummaryTable = document.querySelector("#gang-summary-table tbody");
-                const tableBody = document.querySelector("#laporan-table tbody");
-                let totalWarga = 0;
-                const gangSummary = {};
+document.addEventListener("DOMContentLoaded", function () {
+    const csvFilePath = "data/datawarga.csv"; // Ganti dengan path file CSV Anda
 
-                if (data && data.length > 0) {
-                    // Menghitung jumlah warga per gang
-                    data.forEach((row, index) => {
-                        const gang = row["Gang"] || "-";
+    Papa.parse(csvFilePath, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function (results) {
+            const data = results.data;
+            const gangSummaryTable = document.querySelector("#gang-summary-table tbody");
+            const tableBody = document.querySelector("#laporan-table tbody");
+            let totalWarga = 0;
+            const gangSummary = {};
 
-                        // Hitung jumlah warga per gang
-                        if (!gangSummary[gang]) {
-                            gangSummary[gang] = 0;
-                        }
-                        gangSummary[gang] += 1;
+            if (data && data.length > 0) {
+                // Mengumpulkan data per gang dan menghitung jumlah warga per gang
+                data.forEach((row, index) => {
+                    const gang = row["Gang"] || "";
+                    const jumlahWarga = parseInt(row["Jumlah Warga"]) || 0;
 
-                        // Tambahkan data ke tabel detail warga
-                        const tr = document.createElement("tr");
-                        const noHp = row["No.HP"] || "-";
-                        tr.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${row["No.KK"] || "-"}</td>
-                            <td>${row["Blok/No"] || "-"}</td>
-                            <td>${row["Nama"] || "-"}</td>
-                            <td>${gang}</td>
-                            <td>${row["Posisi"] || "-"}</td>
-                            <td>${formatPhoneNumber(noHp)}</td>
-                            <td>${row["Keterangan"] || "-"}</td>
-                        `;
-                        tableBody.appendChild(tr);
+                    // Lewati gang yang kosong atau "-"
+                    if (!gang || gang === "-") return;
 
-                        totalWarga += 1; // Tambah total warga
-                    });
-
-                    // Tambahkan data ke tabel summary gang
-                    let no = 1;
-                    for (let gang in gangSummary) {
-                        const tr = document.createElement("tr");
-                        tr.innerHTML = `
-                            <td>${no++}</td>
-                            <td>${gang}</td>
-                            <td>${gangSummary[gang]}</td>
-                        `;
-                        gangSummaryTable.appendChild(tr);
+                    // Menambahkan jumlah warga ke gang yang bersangkutan
+                    if (!gangSummary[gang]) {
+                        gangSummary[gang] = 0;
                     }
+                    gangSummary[gang] += jumlahWarga;
 
-                    // Tampilkan total jumlah warga
-                    document.getElementById("total-warga").textContent = totalWarga;
-                } else {
-                    console.error("File CSV kosong atau tidak sesuai format.");
+                    // Menambahkan baris data ke tabel warga
+                    const tr = document.createElement("tr");
+                    const noHp = row["No.HP"] || "-";
+                    tr.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${row["No.KK"] || "-"}</td>
+                        <td>${row["Blok/No"] || "-"}</td>
+                        <td>${row["Nama"] || "-"}</td>
+                        <td>${gang}</td>
+                        <td>${row["Posisi"] || "-"}</td>
+                        <td>${formatPhoneNumber(noHp)}</td>
+                        <td>${row["Keterangan"] || "-"}</td>
+                    `;
+                    tableBody.appendChild(tr);
+
+                    // Menambahkan jumlah warga ke total keseluruhan
+                    totalWarga += jumlahWarga;
+                });
+
+                // Menampilkan data summary gang
+                let no = 1;
+                for (let gang in gangSummary) {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${no++}</td>
+                        <td>${gang}</td>
+                        <td>${gangSummary[gang]}</td>
+                    `;
+                    gangSummaryTable.appendChild(tr);
                 }
-            },
-            error: function (error) {
-                console.error("Error saat membaca file CSV:", error);
+
+                // Menampilkan total jumlah warga keseluruhan
+                document.getElementById("total-warga").textContent = totalWarga;
+            } else {
+                console.error("File CSV kosong atau tidak sesuai format.");
             }
-        });
+        },
+        error: function (error) {
+            console.error("Error saat membaca file CSV:", error);
+        }
     });
+});
 
-    function formatPhoneNumber(phone) {
-        if (phone && phone.trim() !== "-" && !phone.trim().startsWith("+62")) {
-            return "+62 " + phone.trim();
-        }
-        return phone.trim();
+function formatPhoneNumber(phone) {
+    if (phone && phone.trim() !== "-" && !phone.trim().startsWith("+62")) {
+        return "+62 " + phone.trim();
     }
+    return phone.trim();
+}
 
-    function filterTable() {
-        const searchInput = document.getElementById("searchInput").value.toLowerCase();
-        const table = document.getElementById("laporan-table");
-        const rows = table.getElementsByTagName("tr");
+function filterTable() {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    const table = document.getElementById("laporan-table");
+    const rows = table.getElementsByTagName("tr");
 
-        for (let i = 1; i < rows.length; i++) {
-            const cells = rows[i].getElementsByTagName("td");
-            let match = false;
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        let match = false;
 
-            for (let j = 0; j < cells.length; j++) {
-                if (cells[j].innerText.toLowerCase().includes(searchInput)) {
-                    match = true;
-                    break;
-                }
+        for (let j = 0; j < cells.length; j++) {
+            if (cells[j].innerText.toLowerCase().includes(searchInput)) {
+                match = true;
+                break;
             }
-
-            rows[i].style.display = match ? "" : "none";
         }
+
+        rows[i].style.display = match ? "" : "none";
     }
+}
 </script>
 </body>
 </html>
