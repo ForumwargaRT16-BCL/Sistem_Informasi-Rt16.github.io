@@ -160,6 +160,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Abaikan gang yang kosong atau "-"
                     if (!gang || gang === "-") return;
+					
+					// Hitung jumlah warga per gang
+                        if (!gangSummary[gang]) {
+                            gangSummary[gang] = 0;
+                        }
+                        gangSummary[gang] += 1;
 
                     // Mengisi tabel laporan utama
                     const tr = document.createElement("tr");
