@@ -747,4 +747,20 @@ hr.my-4 {
     border: 1px solid #dee2e6;  /* Membuat border tabel lebih jelas */
 }
 
+.zoom-icons {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.zoom-in {
+    font-size: 30px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
 *
