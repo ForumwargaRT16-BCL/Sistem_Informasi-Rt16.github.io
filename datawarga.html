@@ -137,7 +137,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-<script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
     const csvFilePath = "data/datawarga.csv"; // Ganti dengan path file CSV Anda
 
@@ -149,28 +149,25 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = results.data;
             const gangSummaryTable = document.querySelector("#gang-summary-table tbody");
             const tableBody = document.querySelector("#laporan-table tbody");
-            let totalWarga = 0; // Total warga keseluruhan
-            const gangSummary = {}; // Data ringkasan per gang
+            let totalWarga = 0;
+            const gangSummary = {};
 
             if (data && data.length > 0) {
                 // Mengolah data CSV
                 data.forEach((row, index) => {
                     const gang = row["Gang"] || "";
-                    const jumlahWarga = parseInt(row["Jumlah Warga"]) || 0;
+                    //const jumlahWarga = parseInt(row["Jumlah Warga"]) || 0;
 
                     // Abaikan gang yang kosong atau "-"
                     if (!gang || gang === "-") return;
+					
+					// Hitung jumlah warga per gang
+                        if (!gangSummary[gang]) {
+                            gangSummary[gang] = 0;
+                        }
+                        gangSummary[gang] += 1;
 
-                    // Tambahkan ke ringkasan gang
-                    if (!gangSummary[gang]) {
-                        gangSummary[gang] = 0;
-                    }
-                    gangSummary[gang] += jumlahWarga;
-
-                    // Tambahkan ke total keseluruhan warga
-                    totalWarga += jumlahWarga;
-
-                    // Isi tabel laporan utama
+                    // Mengisi tabel laporan utama
                     const tr = document.createElement("tr");
                     const noHp = row["No.HP"] || "-";
                     tr.innerHTML = `
@@ -184,9 +181,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${row["Keterangan"] || "-"}</td>
                     `;
                     tableBody.appendChild(tr);
+
+                    // Menyusun data untuk ringkasan gang
+                    if (!gangSummary[gang]) {
+                        gangSummary[gang] = 0;
+                    }
+                    gangSummary[gang] += jumlahWarga;
+
+                    // Menghitung total keseluruhan warga
+                    totalWarga += jumlahWarga;
                 });
 
-                // Tampilkan data ringkasan per gang
+                // Menampilkan data ringkasan per gang di tabel "Summary Data Warga"
                 let no = 1;
                 for (let gang in gangSummary) {
                     const tr = document.createElement("tr");
@@ -198,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     gangSummaryTable.appendChild(tr);
                 }
 
-                // Tampilkan total keseluruhan warga
+                // Menampilkan total keseluruhan warga
                 document.getElementById("total-warga").textContent = totalWarga;
             } else {
                 console.error("File CSV kosong atau tidak sesuai format.");
