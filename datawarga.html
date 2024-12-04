@@ -18,24 +18,17 @@
 </head>
 <body>
     <!-- header -->
-<style>
-    /* Gradasi biru muda ke hijau langit pada header tabel */
-    table.table-bordered th {
-        background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Biru muda ke hijau langit */
-        color: #000; /* Warna teks hitam */
-    }
+    <style>
+        /* Gradasi biru muda ke hijau langit pada header tabel */
+        table.table-bordered th {
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Biru muda ke hijau langit */
+            color: #000; /* Warna teks hitam */
+        }
 
-    /* Gradasi biru muda ke hijau langit pada kolom No, No.KK, Blok/No */
-    table.table-bordered th:nth-child(1), 
-    table.table-bordered td:nth-child(1), 
-    table.table-bordered th:nth-child(2), 
-    table.table-bordered td:nth-child(2),
-    table.table-bordered th:nth-child(3), 
-    table.table-bordered td:nth-child(3) {
-        background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Gradasi Biru Muda ke Hijau Langit */
-        color: #000; /* Warna teks hitam */
-    }
-</style>
+        table.table-bordered td {
+            background: none; /* Hapus background pada td */
+        }
+    </style>
 
     <!-- Logo di kiri atas -->
     <div class="logo-container">
@@ -125,7 +118,7 @@
 <!-- Kolom untuk Gambar Peta Warga -->
 <div class="col-md-4 text-center">
     <h2><strong>Peta Sebaran Warga</strong></h2>
-    <img id="mapImage" src="img/PetaSebaranWarga.JPG" alt="Peta Sebaran Warga" class="img-fluid" 
+    <img id="mapImage" src="img/PetaSebaranWarga.jpg" alt="Peta Sebaran Warga" class="img-fluid" 
         style="max-width: 100%; height: auto; border: 1px solid #ddd; cursor: pointer;" onclick="zoomImage()">
 		                    <!-- Ikon Zoom -->
                     <div class="zoom-icons">

@@ -15,24 +15,17 @@
 </head>
 <body>
     <!-- header -->
-	<style>
-    /* Gradasi biru muda ke hijau langit pada header tabel */
-    table.table-bordered th {
-        background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Biru muda ke hijau langit */
-        color: #000; /* Warna teks hitam */
-    }
+    <style>
+        /* Gradasi biru muda ke hijau langit pada header tabel */
+        table.table-bordered th {
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Biru muda ke hijau langit */
+            color: #000; /* Warna teks hitam */
+        }
 
-    /* Gradasi biru muda ke hijau langit pada kolom No, No.KK, Blok/No */
-    table.table-bordered th:nth-child(1), 
-    table.table-bordered td:nth-child(1), 
-    table.table-bordered th:nth-child(2), 
-    table.table-bordered td:nth-child(2),
-    table.table-bordered th:nth-child(3), 
-    table.table-bordered td:nth-child(3) {
-        background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Gradasi Biru Muda ke Hijau Langit */
-        color: #000; /* Warna teks hitam */
-    }
-</style>
+        table.table-bordered td {
+            background: none; /* Hapus background pada td */
+        }
+    </style>
     <!-- Logo di kiri atas -->
     <div class="logo-container">
         <img src="img/Logo_erte.jpg" alt="Logo RT" class="logo">
