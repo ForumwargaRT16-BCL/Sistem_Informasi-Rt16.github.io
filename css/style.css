@@ -28,13 +28,13 @@ body {
     height: auto; /* Pertahankan proporsi gambar */
     object-fit: cover; /* Pastikan gambar tetap proporsional */
     border-radius: 50%; /* Membuat logo berbentuk lingkaran */
-    border: 3px solid #06584c; /* Tambahkan border sesuai tema */
+    /*border: 3px solid #06584c; /* Tambahkan border sesuai tema */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Tambahkan bayangan untuk estetika */
 }
 
 /* Jumbotron */
 .jumbotron {
-    background: url('img/Logo erte.jpg') no-repeat center;
+    background: url('img/Logo_erte.png') no-repeat center;
     background-size: cover;
     color: #000;
     padding: 2rem;
@@ -762,5 +762,9 @@ hr.my-4 {
     cursor: pointer;
 }
 
+.service h4 img {
+    vertical-align: middle;
+    margin-right: 8px;
+}
 
 *

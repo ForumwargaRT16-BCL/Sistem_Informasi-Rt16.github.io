@@ -31,13 +31,10 @@
     <!-- Navbar dengan tombol -->
     <div class="navbar text-center">
         <a class="active" href="index.html"><span>Home</span></a>
-        <a class="btn gradient-button m-2" href="about.html"><span>About My</span></a>
+        <a class="btn gradient-button m-2" href="dasboard.html"><span>Dasboard</span></a>
 		<a class="btn gradient-button m-2" href="struktur.html"><span>Stuktur Organisasi</span></a>
-        <a class="btn gradient-button m-2" href="programkerja.html"><span>Program Kerja</span></a>
-        <a class="btn gradient-button m-2" href="laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
-        <a class="btn gradient-button m-2" href="laporankas.html"><span>Laporan KAS RT</span></a>
-		<a class="btn gradient-button m-2" href="laporankasrukem.html"><span>Laporan KAS RUKEM</span></a>
-        <a class="btn gradient-button m-2" href="datawarga.html"><span>Data Warga & Area</span></a>
+        <a class="btn gradient-button m-2" href="setting.html"><span>Setting</span></a>
+        <a class="btn gradient-button m-2" href="help.html"><span>help</span></a>
         <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
         
         <!-- Dropdown Menu -->
@@ -74,17 +71,32 @@
 		<!-- label -->
 
 	<div class="container">
-			<h2>STRUKTUR ORGANISASI</h2> </section>
-		<hr>
-			<!-- <section class="struktur"> -->
-			<!-- Gambar Struktur Organisasi -->
-            <img src="img/struktur.jpg" alt="Struktur Organisasi" class="img-fluid my-4">
-         </section>
+			<h2>Selamat Datang di Dashboard</h2> </section>
+			<hr>
+			<p id="welcome-message"></p>
+
+    </div>
+	<!-- Menu Dashboard -->
+    <div class="container">
+        <h3>Menu Edit</h3>
+        <div class="row mt-4">
+            <div class="col-md-6 mb-3">
+                <a class="btn gradient-button m-2" href="edit_laporanprogramkerja.html"><span>Edit Laporan Program Kerja</span></a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a class="btn gradient-button m-2" href="edit_laporankas.html" class="btn btn-primary btn-block"><span>Edit Laporan Kas RT</span></a>
+			</div>
+            <div class="col-md-6 mb-3">
+                <a class="btn gradient-button m-2" href="edit_laporankasrukem.html" class="btn btn-primary btn-block"><span>Edit Laporan Kas Rukem</span></a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a class="btn gradient-button m-2" href="edit_datawarga.html" class="btn btn-primary btn-block"><span>Edit Data Warga</span></a>
+            </div>
+        </div>
 		</div>
 	</section>
+	        <button class="btn btn-danger" id="logout-button">Logout</button>
 	<hr>
-
-
 	<!-- footer -->
     <footer class="footer">
 		<div class="footer-content">
@@ -96,43 +108,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	
-		<!-- <script type="text/javascript">
-		$(document).ready(function(){
-			$(".bg-loader").hide();
-		})
-	</script> -->
-<script>
-    $(document).ready(function () {
-        let slideIndex = 0;
-        const slideDuration = 3000; // Waktu slide ditampilkan (3 detik)
-        const transitionDuration = 500; // Waktu transisi antar slide (0.5 detik)
 
-        showSlides();
-
-        function showSlides() {
-            const slides = document.querySelectorAll(".slide");
-
-            // Menyembunyikan semua slide
-            slides.forEach(slide => {
-                slide.style.opacity = "0"; // Menggunakan animasi fade-out
-                slide.style.transition = `opacity ${transitionDuration}ms ease-in-out`;
-                slide.style.display = "none"; // Disembunyikan setelah fade selesai
-            });
-
-            // Menampilkan slide berikutnya
-            slideIndex++;
-            if (slideIndex > slides.length) slideIndex = 1;
-
-            slides[slideIndex - 1].style.display = "block"; // Tampilkan slide
-            setTimeout(() => {
-                slides[slideIndex - 1].style.opacity = "1"; // Fade-in
-            }, 10); // Beri sedikit jeda sebelum animasi fade-in
-
-            setTimeout(showSlides, slideDuration); // Ulangi setelah durasi tampil
+    <script>
+        // Periksa status login
+        const username = localStorage.getItem("username");
+        if (!username) {
+            alert("Anda belum login!");
+            window.location.href = "index.html"; // Kembali ke halaman login
+        } else {
+            document.getElementById("welcome-message").textContent = `Halo, ${username}!`;
         }
-    });
-</script>
+
+        // Logout
+        document.getElementById("logout-button").addEventListener("click", () => {
+            localStorage.clear();
+            window.location.href = "index.html";
+        });
+    </script>
 
 	
 </body>

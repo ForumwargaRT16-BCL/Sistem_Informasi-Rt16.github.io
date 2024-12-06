@@ -42,13 +42,10 @@
     <!-- Navbar dengan tombol -->
     <div class="navbar text-center">
         <a class="active" href="index.html"><span>Home</span></a>
-        <a class="btn gradient-button m-2" href="about.html"><span>About My</span></a>
-		<a class="btn gradient-button m-2" href="struktur.html"><span>Stuktur Organisasi</span></a>
-        <a class="btn gradient-button m-2" href="programkerja.html"><span>Program Kerja</span></a>
-        <a class="btn gradient-button m-2" href="laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
-        <a class="btn gradient-button m-2" href="laporankas.html"><span>Laporan KAS RT</span></a>
-		<a class="btn gradient-button m-2" href="laporankasrukem.html"><span>Laporan KAS RUKEM</span></a>
-        <a class="btn gradient-button m-2" href="datawarga.html"><span>Data Warga & Area</span></a>
+        <a class="btn gradient-button m-2" href="dasboard.html"><span>Dasboard</span></a>
+        <a class="btn gradient-button m-2" href="edit_laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="setting.html"><span>Setting</span></a>
+        <a class="btn gradient-button m-2" href="help.html"><span>help</span></a>
         <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
         
         <!-- Dropdown Menu -->
@@ -85,7 +82,7 @@
 		<!-- label -->
 
 	<div class="container">
-			<h2>LAPORAN PROGRAM KERJA</h2> </section>
+			<h2>EDIT LAPORAN PROGRAM KERJA</h2> </section>
 	<hr>
 	<!-- Input pencarian -->
             <div class="col-md-6">
@@ -128,75 +125,69 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const csvFilePath = "data/laporankerja.csv"; // Path ke file CSV
-    const yearDropdown = document.getElementById("yearDropdown");
-    const tableBody = document.querySelector("#laporan-table tbody");
+        const repoOwner = "USERNAME"; // Ganti dengan username GitHub Anda
+        const repoName = "REPO_NAME"; // Ganti dengan nama repositori Anda
+        const filePath = "data/laporankerja.csv"; // Path file CSV di repositori
+        const branch = "main"; // Branch tempat file berada
+        const token = "GITHUB_TOKEN"; // Masukkan Personal Access Token Anda
+        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
-    // Parsing CSV menggunakan PapaParse
-    Papa.parse(csvFilePath, {
-        download: true, // Unduh file dari server
-        header: true, // Baca file CSV sebagai key-value berdasarkan header
-        skipEmptyLines: true, // Lewati baris kosong
-        complete: function (results) {
-            const data = results.data; // Data CSV yang sudah diparse
-            
-            if (data && data.length > 0) {
-                // Set untuk mengumpulkan tahun unik
-                const uniqueYears = new Set();
+        document.addEventListener("DOMContentLoaded", () => {
+            const tableBody = document.querySelector("#laporan-table tbody");
+            const yearDropdown = document.getElementById("yearDropdown");
 
-                // Isi tabel dan kumpulkan tahun
-                data.forEach((row, index) => {
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td>${row.Tahun || "-"}</td>
-                        <td>${row["Tanggal/Bulan"] || "-"}</td>
-                        <td>${row.Program || "-"}</td>
-                        <td>
-                           <button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat Laporan</button>
-                        </td>
-                        <td>${row.Keterangan || "-"}</td>
-                    `;
-                    tableBody.appendChild(tr);
-
-                    // Tambahkan tahun ke Set
-                    if (row.Tahun) {
-                        uniqueYears.add(row.Tahun);
-                    }
+            // Membaca data CSV
+            async function loadCSV() {
+                const response = await fetch(apiUrl, {
+                    headers: { Authorization: `token ${token}` },
                 });
 
-                // Isi dropdown tahun
-                uniqueYears.forEach(year => {
-                    const option = document.createElement("option");
-                    option.value = year;
-                    option.textContent = year;
-                    yearDropdown.appendChild(option);
-                });
-            } else {
-                console.error("File CSV kosong atau tidak sesuai format.");
+                if (response.ok) {
+                    const fileData = await response.json();
+                    const content = atob(fileData.content); // Decode Base64
+                    const data = Papa.parse(content, { header: true, skipEmptyLines: true }).data;
+
+                    const uniqueYears = new Set();
+                    data.forEach((row, index) => {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td>${row.Tahun || "-"}</td>
+                            <td>${row["Tanggal/Bulan"] || "-"}</td>
+                            <td>${row.Program || "-"}</td>
+                            <td><button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat</button></td>
+                            <td>${row.Keterangan || "-"}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" onclick="editRow(${index})">Edit</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteRow(${index})">Hapus</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(tr);
+                        if (row.Tahun) uniqueYears.add(row.Tahun);
+                    });
+
+                    uniqueYears.forEach((year) => {
+                        const option = document.createElement("option");
+                        option.value = year;
+                        option.textContent = year;
+                        yearDropdown.appendChild(option);
+                    });
+                }
             }
-        },
-        error: function (error) {
-            console.error("Error saat membaca file CSV:", error);
-        }
-    });
-});
 
-// Fungsi filter tabel berdasarkan tahun
-function filterByYear() {
-    const selectedYear = document.getElementById("yearDropdown").value;
-    const rows = document.querySelectorAll("#laporan-table tbody tr");
+            // Filter berdasarkan tahun
+            function filterByYear() {
+                const selectedYear = yearDropdown.value;
+                document.querySelectorAll("#laporan-table tbody tr").forEach(row => {
+                    const year = row.children[1].textContent;
+                    row.style.display = !selectedYear || year === selectedYear ? "" : "none";
+                });
+            }
 
-    rows.forEach(row => {
-        const year = row.children[1].textContent; // Kolom "Tahun"
-        if (!selectedYear || year === selectedYear) {
-            row.style.display = ""; // Tampilkan baris
-        } else {
-            row.style.display = "none"; // Sembunyikan baris
-        }
-    });
-}
-</script>
+            // Load CSV saat halaman dimuat
+            loadCSV();
+            yearDropdown.addEventListener("change", filterByYear);
+        });
+    </script>
 </body>
 </html>
