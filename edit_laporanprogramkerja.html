@@ -130,8 +130,7 @@
         const repoName = "Sistem_Informasi-Rt16.github.io"; // Ganti dengan nama repositori Anda
         const filePath = "data/laporankerja.csv"; // Path file CSV di repositori
         const branch = "main"; // Branch tempat file berada
-        const token = "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"; // Masukkan Personal Access Token Anda
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+        const apiUrl = "https://ForumwargaRT16-BCL.github.io/Sistem_Informasi-Rt16.github.io/data/laporankerja.csv";
 
         document.addEventListener("DOMContentLoaded", () => {
             const tableBody = document.querySelector("#laporan-table tbody");
@@ -139,42 +138,40 @@
 
             // Membaca data CSV
             async function loadCSV() {
-                const response = await fetch(apiUrl, {
-                    headers: { Authorization: `token ${token}` },
-                });
+				const response = await fetch(apiUrl);
+				if (response.ok) {
+					const content = await response.text();
+					const data = Papa.parse(content, { header: true, skipEmptyLines: true }).data;
 
-                if (response.ok) {
-                    const fileData = await response.json();
-                    const content = atob(fileData.content); // Decode Base64
-                    const data = Papa.parse(content, { header: true, skipEmptyLines: true }).data;
+					// Proses data seperti biasa
+					const uniqueYears = new Set();
+					data.forEach((row, index) => {
+						const tr = document.createElement("tr");
+						tr.innerHTML = `
+							<td>${index + 1}</td>
+							<td>${row.Tahun || "-"}</td>
+							<td>${row["Tanggal/Bulan"] || "-"}</td>
+							<td>${row.Program || "-"}</td>
+							<td><button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat</button></td>
+							<td>${row.Keterangan || "-"}</td>
+							<td>
+								<button class="btn btn-warning btn-sm" onclick="editRow(${index})">Edit</button>
+								<button class="btn btn-danger btn-sm" onclick="deleteRow(${index})">Hapus</button>
+							</td>
+						`;
+						tableBody.appendChild(tr);
+						if (row.Tahun) uniqueYears.add(row.Tahun);
+					});
 
-                    const uniqueYears = new Set();
-                    data.forEach((row, index) => {
-                        const tr = document.createElement("tr");
-                        tr.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${row.Tahun || "-"}</td>
-                            <td>${row["Tanggal/Bulan"] || "-"}</td>
-                            <td>${row.Program || "-"}</td>
-                            <td><button class="btn btn-primary" onclick="window.open('${row.Laporan}', '_blank')">Lihat</button></td>
-                            <td>${row.Keterangan || "-"}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm" onclick="editRow(${index})">Edit</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteRow(${index})">Hapus</button>
-                            </td>
-                        `;
-                        tableBody.appendChild(tr);
-                        if (row.Tahun) uniqueYears.add(row.Tahun);
-                    });
+					uniqueYears.forEach((year) => {
+						const option = document.createElement("option");
+						option.value = year;
+						option.textContent = year;
+						yearDropdown.appendChild(option);
+					});
+				}
+			}
 
-                    uniqueYears.forEach((year) => {
-                        const option = document.createElement("option");
-                        option.value = year;
-                        option.textContent = year;
-                        yearDropdown.appendChild(option);
-                    });
-                }
-            }
 
             // Filter berdasarkan tahun
             function filterByYear() {
