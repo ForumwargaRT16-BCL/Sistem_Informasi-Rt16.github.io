@@ -767,4 +767,12 @@ hr.my-4 {
     margin-right: 8px;
 }
 
+.icon {
+    width: 20px; /* Ukuran lebar ikon */
+    height: 20px; /* Ukuran tinggi ikon */
+    margin-right: 8px; /* Jarak antara ikon dengan teks */
+    vertical-align: middle; /* Ikon sejajar dengan teks */
+}
+
+
 *
