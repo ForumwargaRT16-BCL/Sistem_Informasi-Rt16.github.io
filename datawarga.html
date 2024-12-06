@@ -240,14 +240,19 @@
 
                     // Tampilkan total jumlah warga
                     document.getElementById("total-warga").textContent = totalWarga;
-                } else {
-                    console.error("File CSV kosong atau tidak sesuai format.");
-                }
-            },
-            error: function (error) {
-                console.error("Error saat membaca file CSV:", error);
+                // *** Panggil fungsi untuk menampilkan grafik ***
+            if (Object.keys(gangSummary).length > 0) {
+                displayPieChart(gangSummary);
+            } else {
+                console.warn("Data gang kosong. Grafik tidak ditampilkan.");
             }
-        });
+        } else {
+            console.error("File CSV kosong atau tidak sesuai format.");
+        }
+    },
+    error: function (error) {
+        console.error("Error saat membaca file CSV:", error);
+    }
     });
 
     function formatPhoneNumber(phone) {
@@ -295,17 +300,9 @@
     }
 	
 	// Tampilkan grafik pie
-                    displayPieChart(gangSummary);
-                } else {
-                    console.error("File CSV kosong atau tidak sesuai format.");
-                }
-            },
-            error: function (error) {
-                console.error("Error saat membaca file CSV:", error);
-            }
-        });
 
-        function displayPieChart(data) {
+
+    function displayPieChart(data) {
     if (!data || Object.keys(data).length === 0) {
         console.warn("Data untuk grafik kosong.");
         return;
