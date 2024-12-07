@@ -90,42 +90,48 @@
 			<a class="btn gradient-button m-2" href="setting.html"><span>Setting Admin</span></a>
 			</div>
 		   </div>
-         </div>
+		 </div>
 
 		<div class="jumbotron text-center">
 
 		<!-- label -->
 
 	<div class="container">
-			<h2>EDIT LAPORAN KAS RUKEM RT16</h2> </section>
+			<h2>EDIT LAPORAN PROGRAM KERJA</h2> </section>
 	<hr>
-		<!-- Input pencarian -->
-            <div class="col-md-6">
-                 <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterByYear()">
-                 <option value="">Pilih Tahun...</option>
-                 </select>
+        <hr>
+        <form id="editForm" class="p-4 border rounded shadow">
+            <div class="form-group">
+                <label for="noIndex">No (Index)</label>
+                <input type="number" class="form-control" id="noIndex" name="no_index" readonly>
             </div>
-	<div class="table-container">
-    <table id="laporan-table" class="table table-bordered">
-        <thead>
-            <tr>
-                <th>No</th>
-				<th>Tahun</th>
-			    <th>Tanggal/Bulan</th>
-                <th>Laporan</th>
-                <th>Lampiran</th>
-                <th>Keterangan</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data akan dimuat di sini -->
-        </tbody>
-    </table>
-</div>
-
-			
+            <div class="form-group">
+                <label for="editTahun">Tahun</label>
+                <input type="text" class="form-control" id="editTahun" name="tahun">
+            </div>
+            <div class="form-group">
+                <label for="editTanggal">Tanggal/Bulan</label>
+                <input type="text" class="form-control" id="editTanggal" name="tanggal">
+            </div>
+            <div class="form-group">
+                <label for="editProgram">Program</label>
+                <input type="text" class="form-control" id="editProgram" name="program">
+            </div>
+            <div class="form-group">
+                <label for="editLaporan">Link Google Drive Laporan</label>
+                <input type="url" class="form-control" id="editLaporan" name="laporan">
+            </div>
+            <div class="form-group">
+                <label for="editKeterangan">Keterangan</label>
+                <textarea class="form-control" id="editKeterangan" name="keterangan" rows="4"></textarea>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+            </div>
+        </form>
+    </div>
+	
 	<hr>
-
 
 	<!-- footer -->
     <footer class="footer">
@@ -140,75 +146,60 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const csvFilePath = "data/laporankasrukem.csv"; // Path ke file CSV
-    const yearDropdown = document.getElementById("yearDropdown");
-    const tableBody = document.querySelector("#laporan-table tbody");
+        const csvFilePath = "data/laporankerja.csv"; // Sesuaikan dengan lokasi file CSV Anda
 
-    // Parsing CSV menggunakan PapaParse
-    Papa.parse(csvFilePath, {
-        download: true, // Unduh file dari server
-        header: true, // Baca file CSV sebagai key-value berdasarkan header
-        skipEmptyLines: true, // Lewati baris kosong
-        complete: function (results) {
-            const data = results.data; // Data CSV yang sudah diparse
-            
-            if (data && data.length > 0) {
-                // Set untuk mengumpulkan tahun unik
-                const uniqueYears = new Set();
+        // Ambil parameter 'no_index' dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const noIndex = urlParams.get("no_index");
 
-                // Isi tabel dan kumpulkan tahun
-                data.forEach((row, index) => {
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td>${row.Tahun || "-"}</td>
-                        <td>${row["Tanggal/Bulan"] || "-"}</td>
-                                <td>${row.Laporan || "-"}</td>
-                                <td>
-                                   <button class="btn btn-primary" onclick="window.open('${row.Lampiran}', '_blank')">Lihat Lampiran</button>
-                                </td>
-                                <td>${row.Keterangan || "-"}</td>
-                            `;
-                            tableBody.appendChild(tr);
+        function fillForm(data) {
+            document.getElementById("noIndex").value = data["No"];
+            document.getElementById("editTahun").value = data["Tahun"];
+            document.getElementById("editTanggal").value = data["Tanggal"];
+            document.getElementById("editProgram").value = data["Program"];
+            document.getElementById("editLaporan").value = data["Laporan"];
+            document.getElementById("editKeterangan").value = data["Keterangan"];
+        }
 
-                    // Tambahkan tahun ke Set
-                    if (row.Tahun) {
-                        uniqueYears.add(row.Tahun);
+        function loadCSV() {
+            Papa.parse(csvFilePath, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    const rowData = results.data.find(row => row["No"] === noIndex);
+                    if (rowData) {
+                        fillForm(rowData);
+                    } else {
+                        alert("Data tidak ditemukan untuk No Index: " + noIndex);
                     }
-                });
-
-                // Isi dropdown tahun
-                uniqueYears.forEach(year => {
-                    const option = document.createElement("option");
-                    option.value = year;
-                    option.textContent = year;
-                    yearDropdown.appendChild(option);
-                });
-            } else {
-                console.error("File CSV kosong atau tidak sesuai format.");
-            }
-        },
-        error: function (error) {
-            console.error("Error saat membaca file CSV:", error);
+                },
+                error: function(error) {
+                    console.error("Gagal membaca file CSV:", error);
+                }
+            });
         }
-    });
-});
 
-// Fungsi filter tabel berdasarkan tahun
-function filterByYear() {
-    const selectedYear = document.getElementById("yearDropdown").value;
-    const rows = document.querySelectorAll("#laporan-table tbody tr");
+        function handleSubmit(event) {
+            event.preventDefault();
 
-    rows.forEach(row => {
-        const year = row.children[1].textContent; // Kolom "Tahun"
-        if (!selectedYear || year === selectedYear) {
-            row.style.display = ""; // Tampilkan baris
-        } else {
-            row.style.display = "none"; // Sembunyikan baris
+            const updatedData = {
+                No: document.getElementById("noIndex").value,
+                Tahun: document.getElementById("editTahun").value,
+                Tanggal: document.getElementById("editTanggal").value,
+                Program: document.getElementById("editProgram").value,
+                Laporan: document.getElementById("editLaporan").value,
+                Keterangan: document.getElementById("editKeterangan").value,
+            };
+
+            console.log("Data yang diperbarui:", updatedData);
+            alert("Data berhasil disimpan!");
+            window.location.href = "edit_laporanprogramkerja.html";
         }
-    });
-}
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadCSV();
+            document.getElementById("editForm").addEventListener("submit", handleSubmit);
+        });
     </script>
 </body>
 </html>

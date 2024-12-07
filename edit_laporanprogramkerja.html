@@ -201,6 +201,17 @@
             loadCSV();
             yearDropdown.addEventListener("change", filterByYear);
         });
+		function editRow(index) {
+		const row = document.querySelector(`#laporan-table tbody`).children[index];
+		const tahun = row.children[1].textContent;
+		const tanggal = row.children[2].textContent;
+		const program = row.children[3].textContent;
+		const keterangan = row.children[5].textContent;
+
+		// Redirect ke halaman form edit dengan parameter query string
+		window.location.href = `formedit_laporanprogramkerja.html?tahun=${encodeURIComponent(tahun)}&tanggal=${encodeURIComponent(tanggal)}&program=${encodeURIComponent(program)}&keterangan=${encodeURIComponent(keterangan)}`;
+	}
+
     </script>
 </body>
 </html>
