@@ -88,11 +88,16 @@
 			<h2>LAPORAN KAS RT16</h2> </section>
 	<hr>
 		<!-- Input pencarian -->
+		<div class="row mb-3">
             <div class="col-md-6">
                  <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterByYear()">
                  <option value="">Pilih Tahun...</option>
                  </select>
             </div>
+			<div class="col-md-3 text-center">
+                <strong>Saldo Akhir: <span id="saldoAkhirDisplay">-</span></strong>
+            </div>
+        </div>
 	<div class="table-container">
     <table id="laporan-table" class="table table-bordered">
         <thead>
@@ -138,6 +143,7 @@
     const csvFilePath = "data/laporankas.csv"; // Path ke file CSV
     const yearDropdown = document.getElementById("yearDropdown");
     const tableBody = document.querySelector("#laporan-table tbody");
+	const saldoAkhirDisplay = document.getElementById("saldoAkhirDisplay"); // Elemen untuk menampilkan saldo akhir
 
     // Parsing CSV menggunakan PapaParse
     Papa.parse(csvFilePath, {
@@ -146,6 +152,7 @@
         skipEmptyLines: true, // Lewati baris kosong
         complete: function (results) {
             const data = results.data; // Data CSV yang sudah diparse
+			let totalSaldoAkhir = 0;
             
             if (data && data.length > 0) {
                 // Set untuk mengumpulkan tahun unik
@@ -175,6 +182,11 @@
                     // Tambahkan tahun ke Set
                     if (row.Tahun) {
                         uniqueYears.add(row.Tahun);
+                    }
+					
+                    // Hitung total saldo akhir
+                    if (row["Saldo Akhir"] && !isNaN(row["Saldo Akhir"])) {
+                        totalSaldoAkhir += parseFloat(row["Saldo Akhir"]);
                     }
                 });
 
