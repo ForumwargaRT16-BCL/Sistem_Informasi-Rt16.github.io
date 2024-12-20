@@ -97,12 +97,18 @@
     <table id="laporan-table" class="table table-bordered">
         <thead>
             <tr>
-                <th>No</th>
-				<th>Tahun</th>
-			    <th>Tanggal/Bulan</th>
-                <th>Laporan</th>
-                <th>Lampiran</th>
-                <th>Keterangan</th>
+            <th>No</th>
+            <th>Tahun</th>
+            <th>Tanggal/Bulan</th>
+            <th>KK</th>
+            <th>Iuran</th>
+            <th>Pemasukan</th>
+            <th>Pengeluaran</th>
+            <th>Simpan</th>
+            <th>Saldo Akhir</th>
+            <th>Laporan</th>
+            <th>Lampiran</th>
+            <th>Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -152,7 +158,13 @@
                         <td>${index + 1}</td>
                         <td>${row.Tahun || "-"}</td>
                         <td>${row["Tanggal/Bulan"] || "-"}</td>
-                                <td>${row.Laporan || "-"}</td>
+						<td>${row.KK || "-"}</td>
+                        <td>${row.Iuran || "-"}</td>
+                        <td>${row.Pemasukan || "-"}</td>
+                        <td>${row.Pengeluaran || "-"}</td>
+                        <td>${row.Simpan || "-"}</td>
+                        <td>${row["Saldo Akhir"] || "-"}</td>
+                        <td>${row.Laporan || "-"}</td>
                                 <td>
                                    <button class="btn btn-primary" onclick="window.open('${row.Lampiran}', '_blank')">Lihat Lampiran</button>
                                 </td>
