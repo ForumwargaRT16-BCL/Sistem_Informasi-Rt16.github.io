@@ -189,6 +189,9 @@
                         totalSaldoAkhir += parseFloat(row["Saldo Akhir"]);
                     }
                 });
+				
+				// Tampilkan total saldo akhir
+                saldoAkhirDisplay.textContent = `Rp ${totalSaldoAkhir.toLocaleString("id-ID")}`;
 
                 // Isi dropdown tahun
                 uniqueYears.forEach(year => {
