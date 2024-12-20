@@ -184,6 +184,12 @@
                         uniqueYears.add(row.Tahun);
                     }
 					
+					                // Hitung total saldo akhir
+                     if (row["Saldo Akhir"] && !isNaN(row["Saldo Akhir"])) {
+                     totalSaldoAkhir += parseFloat(row["Saldo Akhir"]);
+                     }
+                     });
+					
 					// Tambahkan baris saldo akhir di bawah tabel
 					const trTotal = document.createElement("tr");
 					trTotal.innerHTML = `
