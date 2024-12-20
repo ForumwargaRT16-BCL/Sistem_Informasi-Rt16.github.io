@@ -1,17 +1,30 @@
-No,Tahun,Tanggal/Bulan,Laporan,Lampiran,Keterangan
-1,2024,"Mei, Juni, Juli, Agust, Sept, Okt 2023","Laporan Kas RT Bulan Mei, Juni, Juli, Agust, Sept, Okt 2023",https://drive.google.com/file/d/1r-F7onGJcHCshenYDE6ShHfjeiD2HjSD/view?usp=sharing,OK
-2,2024,"Nov, Dec 2023 & Jan 2024","Laporan Kas RT Bulan Nov, Dec 2023 & Jan 2024",https://drive.google.com/file/d/12s5dcOY8J5PNRpC_9-PdOiS6XiPQe2xW/view?usp=sharing,OK
-3,2024,Apr-24,Laporan Kas RT s/d April 2024,~,~
-4,2024,"Juni, Juli, Agustus-24",Laporan Kas RT Juni s/d Agustus 2024,https://drive.google.com/file/d/1mTD2NdQB8iMN63KWIJ-hiu2la1oLEqiD/view?usp=sharing,OK
-5,2024,"Sept, oktober-24",Laporan Kas RT September s/d Oktober 2024,https://drive.google.com/file/d/1IHNC9vDbIJLPppq-xhN0Yi-iyuH6fCrk/view?usp=sharing,OK
-6,2024,November-2024,Laporan Kas RT September s/d November 2024,https://drive.google.com/file/d/1kik3Xn9LZX2tQQSr6-pgi8eSeaVLlet_/view?usp=sharing,OK
-7,,,,,
-8,,,,,
-9,,,,,
-10,,,,,
-11,,,,,
-12,,,,,
-13,,,,,
-14,,,,,
-15,,,,,
-16,,,,,
+No,Tahun,Tanggal/Bulan,KK,Iuran,Pemasukan,Pengeluaran,Simpan,Saldo Akhir,Laporan,Lampiran,Keterangan
+1,2023,Oct,114,"Rp50,000.00","Rp5,700,000.00","Rp3,795,000.00","Rp1,905,000.00","Rp4,560,500.00","Laporan Kas RT Bulan Mei, Juni, Juli, Agust, Sept, Okt 2023",https://drive.google.com/file/d/1r-F7onGJcHCshenYDE6ShHfjeiD2HjSD/view?usp=sharing,OK
+2,2023,Nov,114,"Rp50,000.00","Rp5,700,000.00","Rp5,269,000.00","Rp431,000.00","Rp4,991,500.00","Laporan Kas RT Bulan Nov, Dec 2023 & Jan 2024",https://drive.google.com/file/d/12s5dcOY8J5PNRpC_9-PdOiS6XiPQe2xW/view?usp=sharing,OK
+3,2023,Dec,114,"Rp50,000.00","Rp5,700,000.00","Rp4,095,000.00","Rp1,605,000.00","Rp6,596,500.00","Laporan Kas RT Bulan Nov, Dec 2023 & Jan 2024",https://drive.google.com/file/d/12s5dcOY8J5PNRpC_9-PdOiS6XiPQe2xW/view?usp=sharing,OK
+4,2024,Jan,114,"Rp50,000.00","Rp5,700,000.00","Rp3,845,000.00","Rp1,855,000.00","Rp8,451,500.00","Laporan Kas RT Bulan Nov, Dec 2023 & Jan 2024",https://drive.google.com/file/d/12s5dcOY8J5PNRpC_9-PdOiS6XiPQe2xW/view?usp=sharing,OK
+5,2024,Feb,,"Rp55,000.00",,,,,Laporan Kas RT ,~,
+6,2024,Mar,,"Rp55,000.00",,,,,Laporan Kas RT s/d April 2024,~,
+7,2024,Apr,,"Rp55,000.00",,,,,Laporan Kas RT s/d April 2024,~,
+8,2024,May,,"Rp55,000.00",,,,,Laporan Kas RT s/d April 2024,~,
+9,2024,Jun,113,"Rp55,000.00","Rp6,215,000.00","Rp4,305,000.00","Rp1,910,000.00","Rp6,757,500.00",Laporan Kas RT Juni s/d Agustus 2024,https://drive.google.com/file/d/1mTD2NdQB8iMN63KWIJ-hiu2la1oLEqiD/view?usp=sharing,OK
+10,2024,Jul,114,"Rp55,000.00","Rp6,270,000.00","Rp4,480,000.00","Rp1,790,000.00","Rp8,547,500.00",Laporan Kas RT Juni s/d Agustus 2024,https://drive.google.com/file/d/1mTD2NdQB8iMN63KWIJ-hiu2la1oLEqiD/view?usp=sharing,OK
+11,2024,Aug,114,"Rp55,000.00","Rp6,270,000.00","Rp12,499,000.00","-Rp6,229,000.00","Rp2,442,500.00",Laporan Kas RT Juni s/d Agustus 2024,https://drive.google.com/file/d/1mTD2NdQB8iMN63KWIJ-hiu2la1oLEqiD/view?usp=sharing,OK
+12,2024,Sep,113,"Rp55,000.00","Rp6,215,000.00","Rp4,600,000.00","Rp1,615,000.00","Rp4,057,500.00",Laporan Kas RT September s/d Oktober 2024,https://drive.google.com/file/d/1IHNC9vDbIJLPppq-xhN0Yi-iyuH6fCrk/view?usp=sharing,"Selisih Hitung Actual 
+(Denda Kejra Bakti)"
+13,2024,Oct,115,"Rp55,000.00","Rp6,325,000.00","Rp4,360,000.00","Rp1,965,000.00","Rp6,022,500.00",Laporan Kas RT September s/d Oktober 2024,https://drive.google.com/file/d/1IbpD5UdlhP9kguFlHbk6sQVSchyFQJ7e/view?usp=sharing,"Selisih Hitung Actual 
+(Sampah & Air Minum 30K)"
+14,2024,Nov,115,"Rp55,000.00","Rp6,325,000.00","Rp4,480,000.00","Rp1,845,000.00","Rp7,867,500.00",Laporan Kas RT September s/d November 2024,https://drive.google.com/file/d/1IbpD5UdlhP9kguFlHbk6sQVSchyFQJ7e/view?usp=sharing,OK
+15,2024,Dec,115,"Rp55,000.00","Rp6,325,000.00","Rp5,370,000.00","Rp955,000.00","Rp8,822,500.00",Laporan Kas RT Desember 2024,https://drive.google.com/file/d/1Ze64hW-13LCMSBN9upYowMUSI8JLT90a/view?usp=sharing,OK
+16,2025,Jan,,,,,,,,,
+17,2025,Feb,,,,,,,,,
+18,2025,Mar,,,,,,,,,
+19,2025,Apr,,,,,,,,,
+20,2025,May,,,,,,,,,
+21,2025,Jun,,,,,,,,,
+22,2025,Jul,,,,,,,,,
+23,2025,Aug,,,,,,,,,
+24,2025,Sep,,,,,,,,,
+25,2025,Oct,,,,,,,,,
+26,2025,Nov,,,,,,,,,
+27,2025,Dec,,,,,,,,,
