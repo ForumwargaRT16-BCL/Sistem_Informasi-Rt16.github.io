@@ -187,6 +187,8 @@
                      totalSaldoAkhir += parseFloat(row["Saldo Akhir"]);
                      }
                      });
+					 
+					 saldoAkhirDisplay.textContent = `Rp ${totalSaldoAkhir.toLocaleString("id-ID")}`;
 					
 					// Tambahkan baris saldo akhir di bawah tabel
 					const trTotal = document.createElement("tr");
