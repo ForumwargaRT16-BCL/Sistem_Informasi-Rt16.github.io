@@ -182,9 +182,15 @@
                     if (row.Tahun) {
                         uniqueYears.add(row.Tahun);
                     }
+					
 					// Cek dan simpan saldo terakhir yang valid
-                    if (row["Saldo Akhir"] && !isNaN(row["Saldo Akhir"])) {
-                        saldoTerakhir = parseFloat(row["Saldo Akhir"]);
+                    if (row["Saldo Akhir"]) {
+                        const cleanedSaldo = row["Saldo Akhir"]
+                            .replace(/Rp|\./g, "") // Hapus "Rp" dan tanda titik
+                            .replace(",", "."); // Ubah koma menjadi titik
+                        if (!isNaN(cleanedSaldo)) {
+                            saldoTerakhir = parseFloat(cleanedSaldo);
+                        }
                     }
                 });
 
