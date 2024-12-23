@@ -155,7 +155,7 @@
             if (data && data.length > 0) {
                 // Set untuk mengumpulkan tahun unik
                 const uniqueYears = new Set();
-				let saldoTerakhir = 0; // Variabel untuk menyimpan saldo terakhir valid
+				let saldoTerakhir = null;
 
 
                 // Isi tabel dan kumpulkan tahun
@@ -184,18 +184,12 @@
                     }
 					
 					// Cek dan simpan saldo terakhir yang valid
-                    if (row["Saldo Akhir"]) {
-                        const cleanedSaldo = row["Saldo Akhir"]
-                            .replace(/Rp|\./g, "") // Hapus "Rp" dan tanda titik
-                            .replace(",", "."); // Ubah koma menjadi titik
-                        if (!isNaN(cleanedSaldo)) {
-                            saldoTerakhir = parseFloat(cleanedSaldo);
-                        }
-                    }
-                });
+                            if (row["Saldo Akhir"]) {
+                                saldoTerakhir = row["Saldo Akhir"]; // Ambil data
+                            }
+                        });
 
-                // Tampilkan saldo terakhir di samping tombol search
-                saldoAkhirDisplay.textContent = `Rp ${saldoTerakhir.toLocaleString("id-ID")}`;
+                        saldoAkhirDisplay.textContent = saldoTerakhir || "Tidak ada data";
 					
 					
                 // Isi dropdown tahun
