@@ -188,14 +188,6 @@
 					 
 					 saldoAkhirDisplay.textContent = `Rp ${parseFloat(saldoTerakhir).toLocaleString("id-ID")}`;
 					
-					// Tambahkan baris saldo akhir di bawah tabel
-					const trTotal = document.createElement("tr");
-					trTotal.innerHTML = `
-						<td colspan="8" class="text-right"><strong>Total Saldo Akhir</strong></td>
-						<td><strong>Rp ${totalSaldoAkhir.toLocaleString("id-ID")}</strong></td>
-						<td colspan="3"></td>
-					`;
-					tableBody.appendChild(trTotal);
 					
                 // Isi dropdown tahun
                 uniqueYears.forEach(year => {
