@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
             yearDropdown.innerHTML = '<option value="">Pilih Tahun...</option>';
 
             data.forEach((row, index) => {
-                const tahun = row["Tahun \nBeli"] || "-";
+                const tahun = row["Tahun Beli"] || "-";
 
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
