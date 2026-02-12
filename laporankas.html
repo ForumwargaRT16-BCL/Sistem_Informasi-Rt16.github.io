@@ -73,7 +73,7 @@
             <span></span>
 		</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="btn gradient-button m-2" href="#"><span>Data Aset RT</span></a>
+			<a class="btn gradient-button m-2" href="laporanaset.html"><span>Data Aset RT</span></a>
 			<a class="btn gradient-button m-2" href="#"><span>Template Proposal</span></a>
 			<a class="btn gradient-button m-2" href="setting.html"><span>Setting Admin</span></a>
 			</div>
@@ -88,31 +88,21 @@
 			<h2>LAPORAN KAS RT16</h2> </section>
 	<hr>
 		<!-- Input pencarian -->
-		<div class="row mb-3">
             <div class="col-md-6">
                  <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterByYear()">
                  <option value="">Pilih Tahun...</option>
                  </select>
             </div>
-			<div class="col-md-3 text-center">
-                <strong>Saldo Akhir: <span id="saldoAkhirDisplay">-</span></strong>
-            </div>
-        </div>
 	<div class="table-container">
     <table id="laporan-table" class="table table-bordered">
         <thead>
             <tr>
-            <th>No</th>
-            <th>Tahun</th>
-            <th>Tanggal/Bulan</th>
-            <th>KK</th>
-            <th>Iuran</th>
-            <th>Pemasukan</th>
-            <th>Pengeluaran</th>
-            <th>Simpan</th>
-            <th>Saldo Akhir</th>
-            <th>Lampiran</th>
-            <th>Keterangan</th>
+                <th>No</th>
+				<th>Tahun</th>
+			    <th>Tanggal/Bulan</th>
+                <th>Laporan</th>
+                <th>Lampiran</th>
+                <th>Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -138,11 +128,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
     const csvFilePath = "data/laporankas.csv"; // Path ke file CSV
     const yearDropdown = document.getElementById("yearDropdown");
     const tableBody = document.querySelector("#laporan-table tbody");
-	const saldoAkhirDisplay = document.getElementById("saldoAkhirDisplay"); // Elemen untuk menampilkan saldo akhir
 
     // Parsing CSV menggunakan PapaParse
     Papa.parse(csvFilePath, {
@@ -155,8 +144,6 @@
             if (data && data.length > 0) {
                 // Set untuk mengumpulkan tahun unik
                 const uniqueYears = new Set();
-				let saldoTerakhir = null;
-
 
                 // Isi tabel dan kumpulkan tahun
                 data.forEach((row, index) => {
@@ -165,12 +152,7 @@
                         <td>${index + 1}</td>
                         <td>${row.Tahun || "-"}</td>
                         <td>${row["Tanggal/Bulan"] || "-"}</td>
-						<td>${row.KK || "-"}</td>
-                        <td>${row.Iuran || "-"}</td>
-                        <td>${row.Pemasukan || "-"}</td>
-                        <td>${row.Pengeluaran || "-"}</td>
-                        <td>${row.Simpan || "-"}</td>
-                        <td>${row["Saldo Akhir"] || "-"}</td>
+                                <td>${row.Laporan || "-"}</td>
                                 <td>
                                    <button class="btn btn-primary" onclick="window.open('${row.Lampiran}', '_blank')">Lihat Lampiran</button>
                                 </td>
@@ -182,16 +164,8 @@
                     if (row.Tahun) {
                         uniqueYears.add(row.Tahun);
                     }
-					
-					// Cek dan simpan saldo terakhir yang valid
-                            if (row["Saldo Akhir"]) {
-                                saldoTerakhir = row["Saldo Akhir"]; // Ambil data
-                            }
-                        });
+                });
 
-                        saldoAkhirDisplay.textContent = saldoTerakhir || "Tidak ada data";
-					
-					
                 // Isi dropdown tahun
                 uniqueYears.forEach(year => {
                     const option = document.createElement("option");

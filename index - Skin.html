@@ -6,7 +6,7 @@
     <title>Sistem Informasi RT-16</title>
 	
 	    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/Logo_erte.png">
+    <link rel="icon" type="image/png" href="img/Logo_erte.jpg">
 	
     <!-- Bootstrap CSS untuk tampilan seperti jumbotron -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
 <!-- Header -->
 <div class="jumbotron text-center">
     <div class="logo-container">
-        <img src="img/Logo_erte.png" alt="Logo RT" class="logo">
+        <img src="img/Logo_erte.jpg" alt="Logo RT" class="logo">
     </div>
     <h1 class="display-4">SISTEM INFORMASI</h1>
     <h2>RT-16 ( RW 16 )</h2>
@@ -34,8 +34,8 @@
         <a class="btn gradient-button m-2" href="programkerja.html"><span>Program Kerja</span></a>
         <a class="btn gradient-button m-2" href="laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
         <a class="btn gradient-button m-2" href="laporankas.html"><span>Laporan KAS RT</span></a>
-		<a class="btn gradient-button m-2" href="laporankassosial.html"><span>Laporan KAS SOSIAL</span></a>
         <a class="btn gradient-button m-2" href="datawarga.html"><span>Data Warga & Area</span></a>
+		<a class="btn gradient-button m-2" href="service.html"><span>SERVICE</span></a>
         <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>        
         
         <!-- Dropdown Menu -->
@@ -50,6 +50,18 @@
             </div>
         </div>
     </div> -->
+	   <!-- Dropdown untuk Mengganti Skin -->
+    <div class="dropdown d-inline-block m-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="skinDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Pilih Skin
+        </button>
+        <div class="dropdown-menu" aria-labelledby="skinDropdown">
+            <a class="dropdown-item" href="#" onclick="changeSkin('css/style.css')">Default</a>
+            <a class="dropdown-item" href="#" onclick="changeSkin('css/css1.css')">Skin 1</a>
+            <a class="dropdown-item" href="#" onclick="changeSkin('css/css2.css')">Skin 2</a>
+        </div>
+    </div>
+</div>
 	<!-- Dropdown Menu -->
      <div class="dropdown d-inline-block m-2">
     <button class="neon-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,9 +72,9 @@
             <span></span>
     </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="btn gradient-button m-2" href="laporanaset.html"><span>Data Aset RT</span></a>
-        <a class="btn gradient-button m-2" href="#"><span>Template Proposal</span></a>
-        <a class="btn gradient-button m-2" href="setting.html"><span>Setting Admin</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Humas)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (RT)</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Hubungi (Admin)</span></a>
         </div>
        </div>
      </div>
@@ -92,5 +104,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- JavaScript untuk Mengganti Skin -->
+<script>
+    function changeSkin(skinPath) {
+        const skinLink = document.querySelector('link[rel="stylesheet"][href^="css/"]');
+        if (skinLink) {
+            skinLink.setAttribute('href', skinPath);
+        } else {
+            console.error('Elemen CSS utama tidak ditemukan.');
+        }
+    }
+</script>
 </body>
 </html>

@@ -60,55 +60,42 @@
             <span></span>
             <span></span>
             <span></span>
-		</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="btn gradient-button m-2" href="laporanaset.html"><span>Data Aset RT</span></a>
-			<a class="btn gradient-button m-2" href="#"><span>Template Proposal</span></a>
-			<a class="btn gradient-button m-2" href="setting.html"><span>Setting Admin</span></a>
-			</div>
-		   </div>
-		 </div>
+    </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="btn gradient-button m-2" href="laporanaset.html"><span>Data Aset RT</span></a>
+        <a class="btn gradient-button m-2" href="#"><span>Template Proposal</span></a>
+        <a class="btn gradient-button m-2" href="setting.html"><span>Setting Admin</span></a>
+        </div>
+       </div>
+     </div>
 
 		<div class="jumbotron text-center">
     <!-- about -->
     <div class="container">
-        <h2>CONTACT INFO</h2> 
-    </div>
-    <hr>
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .contact {
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Daftar Kontak</h1>
+    <div id="contacts"></div>
 
-    <!-- Service Section -->
-    <section class="service">
-        <div class="container">
-            <div class="row">
-                <!-- Address Column -->
-                <div class="col-md-4 mb-4">
-                    <h4><img src="icon/map.png" alt="Address Icon" style="width: 24px; height: 24px; margin-right: 8px;">Address</h4>
-                    <p>Perum BCL Jl. Teratai 6 Blok F6 No.1 Waluya, Cikarang Selatan, Kab. BEKASI</p>
-					</div>
-					<!-- Email Column -->
-					<div class="col-md-4 mb-4">
-						<h4>
-							<img src="icon/email.png" alt="Email Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-							Email
-						</h4>
-						<button class="btn btn-primary" onclick="openEmail()">erte16bcl@gmail.com</button>
-					</div>
-
-					<!-- WhatsApp Column -->
-					<div class="col-md-4 mb-4">
-					<h4>
-                    <img src="icon/whatsapp.png" alt="WhatsApp Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-                    WhatsApp
-                </h4>
-                <button class="btn btn-success" onclick="openWhatsApp()">Chat Admin: +62 8111-9280-91</button>
-            </div>
-        </div>
-            <!-- Google Maps Embed -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d776.9883876975614!2d107.19145143228391!3d-6.261200037165117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1732944046048!5m2!1sid!2sid" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </div>
-    </section>
-    <hr>
-</div>
+   
 
 
 	<!-- footer -->
@@ -122,17 +109,30 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script>
-    function openEmail() {
-        window.location.href = "mailto:erte16bcl@gmail.com";
-    }
+ <script>
+        // Data kontak warga
+        const contacts = [
+            { name: "John Doe", phone: "628123456789" },
+            { name: "Jane Smith", phone: "628987654321" },
+            { name: "Budi Santoso", phone: "628112233445" }
+        ];
 
-    function openWhatsApp() {
-    const phoneNumber = "628111928091"; // Nomor WhatsApp dalam format internasional
-    const message = "Halo Admin, saya ingin bertanya mengenai..."; // Pesan awal
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappURL, "_blank");
-    }
+        // Templat pesan
+        const message = "Halo, ini adalah pesan dari RT-16. Mohon perhatian untuk informasi penting.";
+
+        // Menampilkan kontak di halaman
+        const contactsContainer = document.getElementById('contacts');
+        contacts.forEach(contact => {
+            const contactDiv = document.createElement('div');
+            contactDiv.classList.add('contact');
+            contactDiv.innerHTML = `
+                <strong>${contact.name}</strong> - ${contact.phone} <br>
+                <a class="btn" href="https://wa.me/${contact.phone}?text=${encodeURIComponent(message)}" target="_blank">
+                    Kirim Pesan
+                </a>
+            `;
+            contactsContainer.appendChild(contactDiv);
+        });
     </script>
 
 	
