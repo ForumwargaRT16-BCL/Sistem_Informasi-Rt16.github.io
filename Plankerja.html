@@ -37,14 +37,20 @@
 
 		/* STATUS */
 		/* RUN (PLAN) */
-		.run {
-			background:#00c8f0;   /* biru seperti Excel */
-			color:#000;
-			font-weight:bold;
+		.run{
+		  background:#00c8f0; /* biru Excel */
+		  color:#000;
+		  font-weight:bold;
 		}
-
-		.ok { background:#28a745; color:#fff; font-weight:bold; }
-		.progress { background:#17a2b8; color:#fff; }
+		.ok{
+		  background:#28a745;
+		  color:#fff;
+		  font-weight:bold;
+		}
+		.progress{
+		  background:#17a2b8;
+		  color:#fff;
+		}
 		.empty { background:#f8f9fa; }
 
 		/* RESPONSIVE HP */
@@ -126,7 +132,7 @@
 	<hr>
 		<!-- Input pencarian -->
             <div class="col-md-6">
-                 <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterByYear()">
+                 <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterYear()">
                  <option value="">Pilih Tahun...</option>
                  </select>
             </div>
@@ -152,6 +158,7 @@
 	<th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th>
 	<th>Mei</th><th>Jun</th><th>Jul</th><th>Agu</th>
 	<th>Sep</th><th>Okt</th><th>Nov</th><th>Des</th>
+	<th>Keterangan</th>
 	</tr>
 	</thead>
 	<tbody></tbody>
@@ -197,27 +204,28 @@
 
 		["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"]
 		.forEach(m=>{
-		let v = r[m] || "";
-		let cls = "empty";
+		  let v = (r[m] || "").trim();
+		  let cls = "empty";
 
-		/* PLAN → RUN BIRU */
-		if (v === "Run") cls = "run";
+		  if (r.Action === "Plan" && v === "Run") cls = "run";
+		  if (r.Action === "Actual" && v === "OK") cls = "ok";
+		  if (v === ">") cls = "progress";
 
-		/* ACTUAL */
-		if (v === "OK") cls = "ok";
-		if (v === ">") cls = "progress";
-		html += `<td class="${cls}">${v}</td>`;
+		  html += `<td class="${cls}">${v}</td>`;
 		});
+        <td>${r.Keterangan}</td>
 
 		tr.innerHTML = html;
 		tbody.appendChild(tr);
 		});
 
+		const yearDropdown = document.getElementById("yearDropdown");
+
 		years.forEach(y=>{
-		filterYear.innerHTML += `<option>${y}</option>`;
+		  yearDropdown.innerHTML += `<option value="${y}">${y}</option>`;
 		});
 
-		mergeRows("matrixTable",[0,3]);
+		mergeRows("matrixTable",[0,1,3]);
 		}
 		});
 
@@ -237,11 +245,12 @@
 		}
 
 		function filterYear(){
-		const y=filterYear.value;
-		document.querySelectorAll("#matrixTable tbody tr").forEach(r=>{
-		r.style.display = !y || r.cells[1].innerText===y ? "" : "none";
-		});
+		  const y = document.getElementById("yearDropdown").value;
+		  document.querySelectorAll("#matrixTable tbody tr").forEach(r=>{
+			r.style.display = (!y || r.cells[1].innerText === y) ? "" : "none";
+		  });
 		}
+
 </script>
 
 </body>
