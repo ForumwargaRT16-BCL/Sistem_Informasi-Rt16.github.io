@@ -1,49 +1,49 @@
-No,Tahun,Bulan,Rencana Kerja,Action,Jan,Feb,Mar,apr,Mei,jun,jul,Agu,Sep,Okt,Nov,Des,Keterangan
+No,Tahun,Bulan,Rencana Kerja,Action,Jan,Feb,Mar,Apr,Mei,Jun,Jul,Agu,Sep,Okt,Nov,Des,Keterangan
 1,2025,Januari,Monitoring,Plan,Run,,,,,,,,,,,,
-1,2025,Januari,Monitoring,Actual,OK,,,,,,,,,,,,
+1,2025,Januari,Monitoring,Actual,OK,,,,,,,,,,,,selesai
 2,2025,Februari,Rapat Rutin 1,Plan,,Run,,,,,,,,,,,
-2,2025,Februari,Persiapan Puasa & Rencana Acara Hala Bihalan,Actual,>,OK,,,,,,,,,,,
+2,2025,Februari,Persiapan Puasa & Rencana Acara Hala Bihalan,Actual,>,OK,,,,,,,,,,,selesai
 3,2025,maret,Puasa ( idhul Fitri),Plan,,,Run,,,,,,,,,,
-3,2025,maret,Puasa ( idhul Fitri),Actual,,>,OK,,,,,,,,,,
+3,2025,maret,Puasa ( idhul Fitri),Actual,,>,OK,,,,,,,,,,selesai
 4,2025,April,Halal Bihalal ,Plan,,,,Run,,,,,,,,,
-4,2025,April,Halal Bihalal ,Actual,,,>,OK,,,,,,,,,
+4,2025,April,Halal Bihalal ,Actual,,,>,OK,,,,,,,,,selesai
 5,2025,Mei,Rapat Rutin 2,Plan,,,,,Run,,,,,,,,
-5,2025,Mei,Rapat Rutin 2,Actual,,,,>,OK,,,,,,,,
+5,2025,Mei,Rapat Rutin 2,Actual,,,,>,OK,,,,,,,,selesai
 6,2025,Juni,FOGGING,Plan,,,,,,Run,,,,,,,
-6,2025,Juni,FOGGING,Actual,,,,,,>,OK,,,,,,
+6,2025,Juni,FOGGING,Actual,,,,,,>,OK,,,,,,selesai
 7,2025,Juli,Rapat Rutin 3,Plan,,,,,,,Run,,,,,,
-7,2025,Juli,Rapat Rutin 3,Actual,,,,,,>,OK,,,,,,
+7,2025,Juli,Rapat Rutin 3,Actual,,,,,,>,OK,,,,,,selesai
 8,2025,Agustus,Peringatan Kemerdekaan RI ( Upcara bendera),Plan,,,,,,,,Run,,,,,
-8,2025,Agustus,Lomba-Lomba & Pentas Seni,Actual,,,,,,,>,OK,,,,,
+8,2025,Agustus,Lomba-Lomba & Pentas Seni,Actual,,,,,,,>,OK,,,,,selesai
 9,2025,September,Kerja Bakti ( menyongsong Musin Hujan),Plan,,,,,,,,,Run,,,,
-9,2025,September,Kerja Bakti ( menyongsong Musin Hujan),Actual,,,,,,,,>,OK,,,,
+9,2025,September,Kerja Bakti ( menyongsong Musin Hujan),Actual,,,,,,,,>,OK,,,,selesai
 10,2025,Oktober,Rapat Rutin 4,Plan,,,,,,,,,,Run,,,
-10,2025,Oktober,Rapat Rutin 4,Actual,,,,,,,,,>,OK,,,
+10,2025,Oktober,Rapat Rutin 4,Actual,,,,,,,,,>,OK,,,selesai
 11,2025,November,Kerja Bakti ( Lingkungan Gang) & Kali ,Plan,,,,,,,,,,,Run,,
-11,2025,November,Pinggir Danau,Actual,,,,,,,,,,,>,OK,
+11,2025,November,Pinggir Danau,Actual,,,,,,,,,,,>,OK,selesai
 12,2025,Desember,Rapat Tahunan,Plan,,,,,,,,,,,,Run,
-12,2025,Desember,Rapat Tahunan,Actual,,,,,,,,,,,>,OK,
+12,2025,Desember,Rapat Tahunan,Actual,,,,,,,,,,,>,OK,selesai
 1,2026,Januari,Monitoring,Plan,Run,,,,,,,,,,,,
-1,2026,Januari,Monitoring,Actual,OK,,,,,,,,,,,,
+1,2026,Januari,Monitoring,Actual,OK,,,,,,,,,,,,selesai
 2,2026,Februari,Rapat Rutin 1,Plan,,Run,,,,,,,,,,,
-2,2026,Februari,Persiapan Puasa & Rencana Acara Hala Bihalan,Actual,>,OK,,,,,,,,,,,
+2,2026,Februari,Persiapan Puasa & Rencana Acara Hala Bihalan,Actual,>,OK,,,,,,,,,,,selesai
 3,2026,maret,Puasa ( idhul Fitri),Plan,,,Run,,,,,,,,,,
-3,2026,maret,Puasa ( idhul Fitri),Actual,,,>,,,,,,,,,,
+3,2026,maret,Puasa ( idhul Fitri),Actual,,,>,,,,,,,,,,Jalan
 4,2026,April,Halal Bihalal ,Plan,,,,Run,,,,,,,,,
-4,2026,April,Halal Bihalal ,Actual,,,,,,,,,,,,,
+4,2026,April,Halal Bihalal ,Actual,,,,,,,,,,,,,Belum
 5,2026,Mei,Rapat Rutin 2,Plan,,,,,Run,,,,,,,,
-5,2026,Mei,Rapat Rutin 2,Actual,,,,,,,,,,,,,
+5,2026,Mei,Rapat Rutin 2,Actual,,,,,,,,,,,,,Belum
 6,2026,Juni,FOGGING,Plan,,,,,,Run,,,,,,,
-6,2026,Juni,FOGGING,Actual,,,,,,,,,,,,,
+6,2026,Juni,FOGGING,Actual,,,,,,,,,,,,,Belum
 7,2026,Juli,Rapat Rutin 3,Plan,,,,,,,Run,,,,,,
-7,2026,Juli,Persiapan Agustusan,Actual,,,,,,,,,,,,,
+7,2026,Juli,Persiapan Agustusan,Actual,,,,,,,,,,,,,Belum
 8,2026,Agustus,Peringatan Kemerdekaan RI ( Upcara bendera),Plan,,,,,,,,Run,,,,,
-8,2026,Agustus,Lomba-Lomba & Pentas Seni,Actual,,,,,,,,,,,,,
+8,2026,Agustus,Lomba-Lomba & Pentas Seni,Actual,,,,,,,,,,,,,Belum
 9,2026,September,Kerja Bakti ( menyongsong Musin Hujan),Plan,,,,,,,,,Run,,,,
-9,2026,September,Kerja Bakti ( menyongsong Musin Hujan),Actual,,,,,,,,,,,,,
+9,2026,September,Kerja Bakti ( menyongsong Musin Hujan),Actual,,,,,,,,,,,,,Belum
 10,2026,Oktober,Rapat Rutin 4,Plan,,,,,,,,,,Run,,,
-10,2026,Oktober,Rapat Rutin 4,Actual,,,,,,,,,,,,,
+10,2026,Oktober,Rapat Rutin 4,Actual,,,,,,,,,,,,,Belum
 11,2026,November,Kerja Bakti ( Lingkungan Gang) & Kali ,Plan,,,,,,,,,,,Run,,
-11,2026,November,Pinggir Danau,Actual,,,,,,,,,,,,,
+11,2026,November,Pinggir Danau,Actual,,,,,,,,,,,,,Belum
 12,2026,Desember,Rapat Tahunan,Plan,,,,,,,,,,,,Run,
-12,2026,Desember,Rapat Tahunan,Actual,,,,,,,,,,,,,
+12,2026,Desember,Rapat Tahunan,Actual,,,,,,,,,,,,,Belum
