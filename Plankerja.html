@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi RT-16</title>
+		
+	    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/Logo_erte.png">
+	
+    <!-- Bootstrap CSS untuk tampilan seperti jumbotron -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- header -->
+    <style>
+        /* Gradasi biru muda ke hijau langit pada header tabel */
+        table.table-bordered th {
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Biru muda ke hijau langit */
+            color: #000; /* Warna teks hitam */
+        }
+
+        table.table-bordered td {
+            background: none; /* Hapus background pada td */
+        }
+		table th {
+		background: linear-gradient(to bottom, #87CEEB, #FFFFFF);
+		font-size: 12px;
+		}
+		table td { font-size: 12px; }
+
+		/* PLAN & ACTUAL */
+		.plan-row { background:#fff3cd; }
+		.actual-row { background:#d1ecf1; }
+
+		/* STATUS */
+		/* RUN (PLAN) */
+		.run {
+			background:#00c8f0;   /* biru seperti Excel */
+			color:#000;
+			font-weight:bold;
+		}
+
+		.ok { background:#28a745; color:#fff; font-weight:bold; }
+		.progress { background:#17a2b8; color:#fff; }
+		.empty { background:#f8f9fa; }
+
+		/* RESPONSIVE HP */
+		@media(max-width:768px){
+			table { font-size:10px }
+			th,td { padding:4px }
+			th:nth-child(n+6),
+			td:nth-child(n+6){
+				writing-mode: vertical-rl;
+				text-orientation: mixed;
+			}
+		}
+
+		/* PRINT */
+		@media print{
+			nav, footer, button, select { display:none }
+		}
+    </style>
+    <!-- Logo di kiri atas -->
+    <div class="logo-container">
+        <img src="img/Logo_erte.png" alt="Logo RT" class="logo">
+    </div>
+    
+    <div class="jumbotron text-center">
+        <h1 class="display-4">SISTEM INFORMASI</h1>
+        <h2>RT-16 ( RW 16 )</h2>
+        <h3>PERUM BCL ~ DESA WALUYA</h3>
+        <h4>KECAMATAN CIKARANG UTARA ~ KABUPATEN BEKASI</h4>
+    <!-- <hr class="my-4"> -->
+    </div>
+
+    <!-- Navbar dengan tombol -->
+    <div class="navbar text-center">
+        <a class="active" href="index.html"><span>Home</span></a>
+        <a class="btn gradient-button m-2" href="about.html"><span>About My</span></a>
+		<a class="btn gradient-button m-2" href="struktur.html"><span>Stuktur Organisasi</span></a>
+        <a class="btn gradient-button m-2" href="programkerja.html"><span>Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="laporanprogramkerja.html"><span>Laporan Program Kerja</span></a>
+        <a class="btn gradient-button m-2" href="laporankas.html"><span>Laporan KAS RT</span></a>
+		<a class="btn gradient-button m-2" href="laporankassosial.html"><span>Laporan KAS SOSIAL</span></a>
+        <a class="btn gradient-button m-2" href="datawarga.html"><span>Data Warga & Area</span></a>
+        <a class="btn gradient-button m-2" href="contact.html"><span>CONTACT</span></a>
+        
+        <!-- Dropdown Menu -->
+        <!-- <div class="dropdown d-inline-block m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Options
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Option 1</a>
+                <a class="dropdown-item" href="#">Option 2</a>
+                <a class="dropdown-item" href="#">Option 3</a>
+            </div>
+        </div>
+    </div> -->
+	<!-- Dropdown Menu -->
+     <div class="dropdown d-inline-block m-2">
+    <button class="neon-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More Options
+		    <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+		</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="btn gradient-button m-2" href="laporanaset.html"><span>Data Aset RT</span></a>
+			<a class="btn gradient-button m-2" href="proposaltemplate.html"><span>Template Proposal</span></a>
+			<a class="btn gradient-button m-2" href="setting.html"><span>Setting Admin</span></a>
+			</div>
+		   </div>
+		 </div>
+
+		<div class="jumbotron text-center">
+
+		<!-- label -->
+
+	<div class="container">
+			<h2>PROGRESS RENCANA KERJA RT16</h2> </section>
+	<hr>
+		<!-- Input pencarian -->
+            <div class="col-md-6">
+                 <select id="yearDropdown" class="form-control form-control-sm w-25" onchange="filterByYear()">
+                 <option value="">Pilih Tahun...</option>
+                 </select>
+            </div>
+	<div class="col-md-9">
+	<span class="badge badge-warning">PLAN</span>
+	<span class="badge badge-info">ACTUAL</span>
+	<span class="badge badge-success">OK</span>
+	<span class="badge badge-secondary">&gt; PROSES</span>
+	<button onclick="window.print()" class="btn btn-sm btn-primary ml-2">Cetak / PDF</button>
+	</div>
+	</div>
+
+	<!-- TABLE -->
+	<div class="table-responsive">
+	<table id="matrixTable" class="table table-bordered table-sm text-center">
+	<thead>
+	<tr>
+	<th>No</th>
+	<th>Tahun</th>
+	<th>Bulan</th>
+	<th>Rencana Kerja</th>
+	<th>Action</th>
+	<th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th>
+	<th>Mei</th><th>Jun</th><th>Jul</th><th>Agu</th>
+	<th>Sep</th><th>Okt</th><th>Nov</th><th>Des</th>
+	</tr>
+	</thead>
+	<tbody></tbody>
+	</table>
+	</div>
+	</div>
+
+			
+	<hr>
+
+
+	<!-- footer -->
+    <footer class="footer">
+		<div class="footer-content">
+            <small>Copyright &copy; 2024 - Gunawan. All Rights Reserved.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script>
+		Papa.parse("data/program_kerja_rt16.csv", {
+		download:true,
+		header:true,
+		complete:function(res){
+		const tbody = document.querySelector("#matrixTable tbody");
+		const years = new Set();
+
+		res.data.forEach(r=>{
+		years.add(r.Tahun);
+		const tr = document.createElement("tr");
+		tr.className = r.Action === "Plan" ? "plan-row" : "actual-row";
+
+		let html = `
+		<td>${r.No}</td>
+		<td>${r.Tahun}</td>
+		<td>${r.Bulan}</td>
+		<td style="text-align:left">${r["Rencana Kerja"]}</td>
+		<td><b>${r.Action}</b></td>`;
+
+		["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"]
+		.forEach(m=>{
+		let v = r[m] || "";
+		let cls = "empty";
+
+		/* PLAN → RUN BIRU */
+		if (v === "Run") cls = "run";
+
+		/* ACTUAL */
+		if (v === "OK") cls = "ok";
+		if (v === ">") cls = "progress";
+		html += `<td class="${cls}">${v}</td>`;
+		});
+
+		tr.innerHTML = html;
+		tbody.appendChild(tr);
+		});
+
+		years.forEach(y=>{
+		filterYear.innerHTML += `<option>${y}</option>`;
+		});
+
+		mergeRows("matrixTable",[0,3]);
+		}
+		});
+
+		function mergeRows(tableId, cols){
+		const rows = document.getElementById(tableId).tBodies[0].rows;
+		cols.forEach(c=>{
+		let last="", span=null, count=1;
+		for(let i=0;i<rows.length;i++){
+		const cell=rows[i].cells[c];
+		if(cell.innerText===last){
+		count++; cell.style.display="none"; span.rowSpan=count;
+		}else{
+		last=cell.innerText; span=cell; count=1;
+		}
+		}
+		});
+		}
+
+		function filterYear(){
+		const y=filterYear.value;
+		document.querySelectorAll("#matrixTable tbody tr").forEach(r=>{
+		r.style.display = !y || r.cells[1].innerText===y ? "" : "none";
+		});
+		}
+</script>
+
+</body>
+</html>
