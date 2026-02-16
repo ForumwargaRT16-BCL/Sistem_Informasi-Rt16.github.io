@@ -213,7 +213,9 @@
 
 		  html += `<td class="${cls}">${v}</td>`;
 		});
-        <td>${r.Keterangan}</td>
+
+		/* KOLOM KETERANGAN (BENAR) */
+		html += `<td>${r.Keterangan || ""}</td>`;
 
 		tr.innerHTML = html;
 		tbody.appendChild(tr);
