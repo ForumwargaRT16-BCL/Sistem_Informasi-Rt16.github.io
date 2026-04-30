@@ -28,11 +28,11 @@ No,Tahun,Bulan,Rencana Kerja,Action,Jan,Feb,Mar,Apr,Mei,Jun,Jul,Agu,Sep,Okt,Nov,
 2,2026,Februari,Rapat Rutin 1,Plan,,Run,,,,,,,,,,,
 2,2026,Februari,Persiapan Puasa & Rencana Acara Hala Bihalan,Actual,>,OK,,,,,,,,,,,selesai
 3,2026,maret,Puasa ( idhul Fitri),Plan,,,Run,,,,,,,,,,
-3,2026,maret,Puasa ( idhul Fitri),Actual,,,>,,,,,,,,,,Jalan
+3,2026,maret,Puasa ( idhul Fitri),Actual,,>,OK,,,,,,,,,,selesai
 4,2026,April,Halal Bihalal ,Plan,,,,Run,,,,,,,,,
-4,2026,April,Halal Bihalal ,Actual,,,,,,,,,,,,,Belum
+4,2026,April,Halal Bihalal ,Actual,,,>,OK,,,,,,,,,selesai
 5,2026,Mei,Rapat Rutin 2,Plan,,,,,Run,,,,,,,,
-5,2026,Mei,Rapat Rutin 2,Actual,,,,,,,,,,,,,Belum
+5,2026,Mei,Rapat Rutin 2,Actual,,,,,>,,,,,,,,Jalan
 6,2026,Juni,FOGGING,Plan,,,,,,Run,,,,,,,
 6,2026,Juni,FOGGING,Actual,,,,,,,,,,,,,Belum
 7,2026,Juli,Rapat Rutin 3,Plan,,,,,,,Run,,,,,,
