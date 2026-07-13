@@ -32,11 +32,11 @@ No,Tahun,Bulan,Rencana Kerja,Action,Jan,Feb,Mar,Apr,Mei,Jun,Jul,Agu,Sep,Okt,Nov,
 4,2026,April,Halal Bihalal ,Plan,,,,Run,,,,,,,,,
 4,2026,April,Halal Bihalal ,Actual,,,>,OK,,,,,,,,,selesai
 5,2026,Mei,Rapat Rutin 2,Plan,,,,,Run,,,,,,,,
-5,2026,Mei,Rapat Rutin 2,Actual,,,,,>,,,,,,,,Jalan
+5,2026,Mei,Rapat Rutin 2,Actual,,,,,>,>,OK,,,,,,selesai
 6,2026,Juni,FOGGING,Plan,,,,,,Run,,,,,,,
-6,2026,Juni,FOGGING,Actual,,,,,,,,,,,,,Belum
+6,2026,Juni,FOGGING,Actual,,,,,,>,>,,,,,,Belum
 7,2026,Juli,Rapat Rutin 3,Plan,,,,,,,Run,,,,,,
-7,2026,Juli,Persiapan Agustusan,Actual,,,,,,,,,,,,,Belum
+7,2026,Juli,Persiapan Agustusan & Lomba,Actual,,,,,,,OK,,,,,,selesai
 8,2026,Agustus,Peringatan Kemerdekaan RI ( Upcara bendera),Plan,,,,,,,,Run,,,,,
 8,2026,Agustus,Lomba-Lomba & Pentas Seni,Actual,,,,,,,,,,,,,Belum
 9,2026,September,Kerja Bakti ( menyongsong Musin Hujan),Plan,,,,,,,,,Run,,,,
